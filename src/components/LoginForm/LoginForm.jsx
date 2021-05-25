@@ -60,7 +60,7 @@ function LoginForm() {
 
   return (
     <>
-    <form>
+   
     <Container align="center" className={classes.login}>
       <Grid noValidate autoComplete="off" onSubmit={login} lg={2} xs={6} sm={3} md={3}>
         {/* <Card>
@@ -73,10 +73,10 @@ function LoginForm() {
       )}
           {/* </CardHeader>
           <CardContent> */}
-          <TextField required id="standard-required" label="Username" color="secondary" value={username}
+          <TextField noValidate autoComplete="off" required variant="standard" label="Username" color="secondary" value={username}
             onChange={(event) => setUsername(event.target.value)}/>
           <TextField className={classes.password} required label="Password" variant="standard" color="secondary" value={password} 
-            type="password" onChange={(event) => setPassword(event.target.value)}/>
+            type="password" noValidate autoComplete="off" onChange={(event) => setPassword(event.target.value)}/>
           <ThemeProvider theme={theme}>
             <Button variant="contained" className={classes.btn} color="primary" align="center" onClick={login}>Sign In</Button>
             </ThemeProvider>
@@ -85,7 +85,7 @@ function LoginForm() {
         </Card> */}
       </Grid>
     </Container>
-    </form>
+    
   
 
     {/* <form className="formPanel" onSubmit={login}>
