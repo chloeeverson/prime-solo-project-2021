@@ -19,6 +19,7 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import Prompt from '../Prompt';
 
 import './App.css';
 
@@ -64,6 +65,13 @@ function App() {
             path="/info"
           >
             <InfoPage />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/prompt"
+          >
+            <Prompt />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will

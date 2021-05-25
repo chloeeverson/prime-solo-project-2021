@@ -78,7 +78,7 @@ function LoginForm() {
           <TextField className={classes.password} required label="Password" variant="standard" color="secondary" value={password} 
             type="password" noValidate autoComplete="off" onChange={(event) => setPassword(event.target.value)}/>
           <ThemeProvider theme={theme}>
-            <Button variant="contained" className={classes.btn} color="primary" align="center" onClick={login}>Sign In</Button>
+          <Button variant="contained" className={classes.btn} color="primary" align="center" onClick={login}>Sign In</Button>
             </ThemeProvider>
   
           {/* </CardContent>
