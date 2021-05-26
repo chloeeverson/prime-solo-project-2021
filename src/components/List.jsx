@@ -26,7 +26,9 @@ const useStyles = makeStyles({
 
 function List() {
     const classes = useStyles();
+
     const title = useSelector(store => store.prompts);
+    const list = useSelector(store => store.list);
 
     const [name, setName] = useState('');
     const [amount, setAmount] = useState(1);
@@ -64,6 +66,11 @@ function List() {
 
                     <Button variant="contained" className={classes.addBtn} size="medium" color="primary" onClick={addItem}>Add Item</Button>
                 </div>
+                <ul>
+        {list.map((item) => 
+          <li key={item.id}>{item.amount} {item.name}</li>  
+        )}
+      </ul>
             </Grid>
             </Container>
 
