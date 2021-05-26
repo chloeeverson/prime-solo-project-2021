@@ -68,14 +68,16 @@ function Prompt() {
                 <Typography className={classes.prompt} lg={2} variant="subtitle1">Start date:</Typography>
             </Grid>
             <Grid item>
-                <TextField className={classes.prompt} variant="filled" label="MM/DD/YYYY" required value={when}
+                <TextField className={classes.prompt} type="date" variant="filled" 
+                // label="MM/DD/YYYY" 
+                required value={when}
             onChange={(event) => setWhen(event.target.value)}/>
             </Grid>
             <Grid item>
                 <Typography className={classes.prompt} lg={2} variant="subtitle1">How many days?</Typography>
             </Grid>
             <Grid item>
-                <TextField className={classes.prompt} variant="filled" label="Number" required value={days}
+                <TextField className={classes.prompt} type="number" variant="filled" label="Number" required value={days}
             onChange={(event) => setDays(event.target.value)}/>
             </Grid>
             <Button variant="contained" className={classes.btn} size="large" color="primary" onClick={packingList} endIcon={<ArrowForwardIosIcon />}>Packing List</Button>
