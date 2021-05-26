@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
@@ -46,7 +46,7 @@ const useStyles = makeStyles({
 
 function Nav() {
   
-
+  const location=useLocation();
   const classes = useStyles();
 
   const user = useSelector((store) => store.user);
@@ -58,9 +58,13 @@ function Nav() {
       text: '',
   };
 
-  if (user.id != null) {
-    // loginLinkData.path = '/user';
-    // loginLinkData.text = 'Saved Lists';
+  if (user.id != null && location.pathname != "/user") {
+    loginLinkData.path = '/user';
+    loginLinkData.text = 'Saved Lists';
+
+  }
+
+  if (user.id != null && location.pathname === "/user") {
       loginLinkData.path = '/prompt';
     loginLinkData.text = 'Create New List';
 
