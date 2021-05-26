@@ -20,6 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Prompt from '../Prompt';
+import List from '../List'
 
 import './App.css';
 
@@ -39,13 +40,13 @@ function App() {
           <Redirect exact from="/" to="/login" />
 
           {/* Visiting localhost:3000/about will show the about page. */}
-          <Route
+          {/* <Route
             // shows AboutPage at all times (logged in or not)
             exact
             path="/about"
           >
             <AboutPage />
-          </Route>
+          </Route> */}
 
           {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
@@ -59,19 +60,26 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
+          {/* <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
             path="/info"
           >
             <InfoPage />
-          </ProtectedRoute>
+          </ProtectedRoute> */}
           <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
+            // logged in shows promptPage else shows LoginPage
             exact
             path="/prompt"
           >
             <Prompt />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows listPage else shows LoginPage
+            exact
+            path="/list"
+          >
+            <List />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will

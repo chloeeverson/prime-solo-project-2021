@@ -9,16 +9,16 @@ import CardTravelIcon from '@material-ui/icons/CardTravel';
 
 const theme = createMuiTheme({
   palette: {
-      secondary: {
-          main: '#000000'
-      },
-      textSecondary: {
-        main: '#000000'
+    secondary: {
+      main: '#000000'
     },
-      primary: {
-        main: '#F49D0C'
+    textSecondary: {
+      main: '#000000'
+    },
+    primary: {
+      main: '#F49D0C'
     }
-}
+  }
 })
 
 
@@ -45,8 +45,8 @@ const useStyles = makeStyles({
 
 
 function Nav() {
-  
-  const location=useLocation();
+
+  const location = useLocation();
   const classes = useStyles();
 
   const user = useSelector((store) => store.user);
@@ -54,8 +54,8 @@ function Nav() {
   let loginLinkData = {
     // path: '/login',
     // text: 'Login / Register',
-      path: '',
-      text: '',
+    path: '',
+    text: '',
   };
 
   if (user.id != null && location.pathname != "/user") {
@@ -65,42 +65,42 @@ function Nav() {
   }
 
   if (user.id != null && location.pathname === "/user") {
-      loginLinkData.path = '/prompt';
+    loginLinkData.path = '/prompt';
     loginLinkData.text = 'Create New List';
 
   }
 
   return (
-    
+
     <div className="nav">
-        <Link
-          // className="navLink" 
-          to={loginLinkData.path}>
-          {loginLinkData.text}
-        </Link>
+      <Link
+        // className="navLink" 
+        to={loginLinkData.path}>
+        {loginLinkData.text}
+      </Link>
 
       {/* <Link to="/home"> */}
-        {/* <h2 className="nav-title">packMe</h2> */}
-        <ThemeProvider theme={theme}>
+      {/* <h2 className="nav-title">packMe</h2> */}
+      <ThemeProvider theme={theme}>
         <Grid className={classes.logo}
-          >
+        >
           <Grid item>
             <CardTravelIcon className={classes.suitcase} color="secondary" align="center" fontSize='medium' />
           </Grid>
           <Grid item>
-          
-              <Typography className={classes.title} variant="subtitle1" color="textSecondary" align="center">packMe</Typography>
-          {/* <Grid item className={classes.titleHome}>
+
+            <Typography className={classes.title} variant="subtitle1" color="textSecondary" align="center">packMe</Typography>
+            {/* <Grid item className={classes.titleHome}>
           <Typography align="center" variant="h1">SAVED LISTS</Typography>
           </Grid> */}
           </Grid>
         </Grid>
-        </ThemeProvider>
+      </ThemeProvider>
       {/* </Link> */}
       <div>
 
-        
-      
+
+
 
         {user.id && (
           <>
@@ -116,7 +116,7 @@ function Nav() {
         </Link> */}
       </div>
     </div>
-   
+
 
   );
 }
