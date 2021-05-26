@@ -4,7 +4,7 @@ import axios from 'axios'
 
 function* addItem(action) {
     try {
-        yield axios.post('/item', action.payload);
+        yield axios.post('/items', action.payload);
         yield put({ type: 'FETCH_LIST' })
     } catch (error) {
         alert(`Sorry. things are not working at the moment. Try again later`)

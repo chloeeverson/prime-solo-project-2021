@@ -1,7 +1,8 @@
 import { Typography, Grid, TextField, makeStyles, Button, Container } from '@material-ui/core';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 import prompts from '../redux/reducers/prompts.reducer';
+
 
 const useStyles = makeStyles({
     numberInput: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles({
 
 function List() {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     const title = useSelector(store => store.prompts);
     const list = useSelector(store => store.list);
@@ -33,13 +35,17 @@ function List() {
     const [name, setName] = useState('');
     const [amount, setAmount] = useState(1);
 
+    dispatch({type: 'FETCH_LIST'})
+
     function addItem() {
-        console.log('adding', {number}, {name});
+        console.log('adding', {amount}, {name});
 
         dispatch({type: 'ADD_ITEM', payload:{
             name: name, 
             amount: amount,
         }})
+        setName('');
+        setAmount(1);
     }
 
     return (
