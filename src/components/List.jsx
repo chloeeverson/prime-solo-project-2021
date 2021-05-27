@@ -1,6 +1,6 @@
 import { Typography, Grid, TextField, makeStyles, Button, Container } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import prompts from '../redux/reducers/prompts.reducer';
 
 
@@ -35,7 +35,10 @@ function List() {
     const [name, setName] = useState('');
     const [amount, setAmount] = useState(1);
 
-    // dispatch({type: 'FETCH_LIST'})
+    useEffect(()=> {
+        dispatch({type: 'FETCH_ITEMS'})
+    }, []);
+    
 
     function addItem() {
         console.log('adding', {amount}, {name});

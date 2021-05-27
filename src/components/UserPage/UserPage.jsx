@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import {Typography, createMuiTheme, ThemeProvider} from '@material-ui/core';
@@ -17,8 +17,12 @@ function UserPage() {
   const user = useSelector((store) => store.user);
   const list = useSelector((store)=>store.list);
   console.log(list);
-  // const dispatch = useDispatch();
-  // dispatch({type: 'FETCH_LIST'})
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch({type: 'FETCH_LIST'})
+  },[]);
+  
   return (
     // <div className="container">
     //   <h2>Welcome, {user.username}!</h2>
