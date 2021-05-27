@@ -12,6 +12,7 @@ function* addList(action) {
     }
 }
 
+
 function* fetchList(){
     try{
       //yield makes us wait until the async thing (axios) is done

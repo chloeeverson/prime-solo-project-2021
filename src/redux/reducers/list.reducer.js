@@ -1,4 +1,6 @@
 const list = (state = [], action) => {
+    console.log('hello from the list reducer');
+    
     // set book list with data from server
     if (action.type === 'SET_LIST'){
       //the action payload is a new array from the server

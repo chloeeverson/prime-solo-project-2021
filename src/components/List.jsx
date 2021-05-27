@@ -29,9 +29,9 @@ function List() {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    const title = useSelector(store => store.prompts);
-    const list = useSelector(store => store.list);
-
+    const title = useSelector(store => store.currentList);
+    const items = useSelector(store => store.items);
+    console.log(title);
     const [name, setName] = useState('');
     const [amount, setAmount] = useState(1);
 
@@ -43,6 +43,7 @@ function List() {
         dispatch({type: 'ADD_ITEM', payload:{
             name: name, 
             amount: amount,
+            list_id: title.id
         }})
         setName('');
         setAmount(1);
@@ -73,7 +74,7 @@ function List() {
                     <Button variant="contained" className={classes.addBtn} size="medium" color="primary" onClick={addItem}>Add Item</Button>
                 </div>
                 <ul>
-        {list.map((item) => 
+        {items.map((item) => 
           <li key={item.id}>{item.amount} {item.name}</li>  
         )}
       </ul>

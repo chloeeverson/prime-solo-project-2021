@@ -36,16 +36,23 @@ function Prompt() {
     const dispatch = useDispatch();
 
     function packingList() {
-        console.log('adding list for:', {where}, {when});
+        console.log('adding list for:', {where}, {when}, 'to saved lists');
         if (where && when && days) {
-            dispatch({
+            dispatch(
+                {
                 type: 'ADD_LIST',
                 payload: {
                     location: where,
                     start_date: when,
                     days: days,
-                },
-            });
+                }},
+                {type: 'ADD_CURRENT_LIST',
+                payload: {
+                    location: where,
+                    start_date: when,
+                    days: days,
+                }}
+            );
         } else {
             dispatch({ type: 'PROMPT_INPUT_ERROR' });
         }

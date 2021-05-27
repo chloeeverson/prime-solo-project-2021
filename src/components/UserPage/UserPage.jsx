@@ -1,7 +1,8 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {Typography, createMuiTheme, ThemeProvider} from '@material-ui/core';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -14,6 +15,10 @@ const theme = createMuiTheme({
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const list = useSelector((store)=>store.list);
+  console.log(list);
+  // const dispatch = useDispatch();
+  // dispatch({type: 'FETCH_LIST'})
   return (
     // <div className="container">
     //   <h2>Welcome, {user.username}!</h2>
@@ -22,6 +27,11 @@ function UserPage() {
     // </div>
 <ThemeProvider theme={theme}>
     <Typography variant="h2" align="center" color="primary">SAVED LISTS</Typography>
+    <ul>
+        {list.map((trip) => 
+          <li key={trip.id}>{trip.location} {trip.start_date}</li>  
+        )}
+      </ul>
     </ThemeProvider>
     );
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import { Typography, makeStyles, createMuiTheme, ThemeProvider, Box, Grid, Container, AppBar, ToolBar } from '@material-ui/core';
 import CardTravelIcon from '@material-ui/icons/CardTravel';
@@ -48,6 +48,7 @@ function Nav() {
 
   const location = useLocation();
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const user = useSelector((store) => store.user);
 
@@ -69,6 +70,13 @@ function Nav() {
     loginLinkData.text = 'Create New List';
 
   }
+
+  if (user.id != null && location.pathname != "/list" && location.pathname != "/prompt") {
+    dispatch({type: 'RESET_CURRENT_LIST'})
+
+  }
+
+  
 
   return (
 
