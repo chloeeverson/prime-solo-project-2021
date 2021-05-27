@@ -2,12 +2,31 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import './LandingPage.css';
 
+import {Button, makeStyles, createMuiTheme, ThemeProvider } from '@material-ui/core';
+
 // CUSTOM COMPONENTS
 import RegisterForm from '../RegisterForm/RegisterForm';
+
+const theme = createMuiTheme({
+  palette: {
+      primary: {
+          main: '#F49D0C'
+      }
+  }
+})
+
+const useStyles = makeStyles({
+  btn: {
+      backgroundColor: ''
+  }
+})
 
 function LandingPage() {
   const [heading, setHeading] = useState('Welcome');
   const history = useHistory();
+  const classes = useStyles();
+
+
 
   const onLogin = (event) => {
     history.push('/login');
@@ -19,46 +38,27 @@ function LandingPage() {
 
       <div className="grid">
         <div className="grid-col grid-col_8">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra lacus
-            ut ex molestie blandit. Etiam et turpis sit amet risus mollis
-            interdum. Suspendisse et justo vitae metus bibendum fringilla sed
-            sed justo. Aliquam sollicitudin dapibus lectus, vitae consequat odio
-            elementum eget. Praesent efficitur eros vitae nunc interdum, eu
-            interdum justo facilisis. Sed pulvinar nulla ac dignissim efficitur.
-            Quisque eget eros metus. Vestibulum bibendum fringilla nibh a
-            luctus. Duis a sapien metus.
-          </p>
+          {/* <p>
+          packMe is designed to help a person pack for their upcoming travel. 
+          A user will be able to create their own packing list on the app and keep track of which items they packed using a checkbox system. 
+          (STRETCH GOAL: Users will be given suggested packing items to choose from for the purpose of helping users decide and remember what to pack.) 
+          Users can make multiple lists. They can save their lists to go back to them at any time. 
+          The goal of this app is to create an easier way to manage and organize packing for upcoming travel. 
+          </p> */}
 
-          <p>
-            Praesent consectetur orci dui, id elementum eros facilisis id. Sed
-            id dolor in augue porttitor faucibus eget sit amet ante. Nunc
-            consectetur placerat pharetra. Aenean gravida ex ut erat commodo, ut
-            finibus metus facilisis. Nullam eget lectus non urna rhoncus
-            accumsan quis id massa. Curabitur sit amet dolor nisl. Proin
-            euismod, augue at condimentum rhoncus, massa lorem semper lacus, sed
-            lobortis augue mi vel felis. Duis ultrices sapien at est convallis
-            congue.
-          </p>
-
-          <p>
-            Fusce porta diam ac tortor elementum, ut imperdiet metus volutpat.
-            Suspendisse posuere dapibus maximus. Aliquam vitae felis libero. In
-            vehicula sapien at semper ultrices. Vivamus sed feugiat libero. Sed
-            sagittis neque id diam euismod, ut egestas felis ultricies. Nullam
-            non fermentum mauris. Sed in enim ac turpis faucibus pretium in sit
-            amet nisi.
-          </p>
+        
         </div>
         <div className="grid-col grid-col_4">
           <RegisterForm />
 
           <center>
             <h4>Already a Member?</h4>
-            <button className="btn btn_sizeSm" onClick={onLogin}>
+            <ThemeProvider theme={theme}>
+            <Button variant="contained" className={classes.btn} color="primary" onClick={onLogin}>Login</Button>
+            </ThemeProvider>
+            {/* <button className="btn btn_sizeSm" onClick={onLogin}>
               Login
-            </button>
+            </button> */}
           </center>
         </div>
       </div>
