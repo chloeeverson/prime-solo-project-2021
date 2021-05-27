@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
 import {Typography, createMuiTheme, ThemeProvider} from '@material-ui/core';
+import moment from 'moment';
 
 
 const theme = createMuiTheme({
@@ -29,11 +30,12 @@ function UserPage() {
     //   <p>Your ID is: {user.id}</p>
       // <LogOutButton className="btn" />
     // </div>
+    
 <ThemeProvider theme={theme}>
     <Typography variant="h2" align="center" color="primary">SAVED LISTS</Typography>
     <ul>
         {list.map((trip) => 
-          <li key={trip.id}>{trip.location} {trip.start_date}</li>  
+          <li key={trip.id}>{trip.location} {moment(trip.start_date).format('LL')}</li>  
         )}
       </ul>
     </ThemeProvider>

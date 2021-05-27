@@ -5,6 +5,7 @@ const pool = require('../modules/pool');
 
 // Get all items
 router.get('/', (req, res) => {
+  req.params
   let queryText = 'SELECT amount, name FROM "item";';
   pool.query(queryText).then(result => {
     // Sends back the results in an object
@@ -17,14 +18,14 @@ router.get('/', (req, res) => {
 });
 
 // Adds a new item to the packing list
-// Request body must be an item object with an amount and name.
+// Request body must be an item object with an amount, name, and list id.
 router.post('/',  (req, res) => {
   let newItem = req.body;
   console.log(`Adding item`, newItem);
 
-  let queryText = `INSERT INTO "item" ("amount", "name")
-                   VALUES ($1, $2);`;
-  pool.query(queryText, [newItem.amount, newItem.name])
+  let queryText = `INSERT INTO "item" ("amount", "name", "list_id")
+                   VALUES ($1, $2, $3);`;
+  pool.query(queryText, [newItem.amount, newItem.name, newItem.list_id])
     .then(result => {
       res.sendStatus(201);
     })

@@ -29,9 +29,11 @@ function List() {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    const title = useSelector(store => store.currentList);
+    const list = useSelector(store => store.currentList);
     const items = useSelector(store => store.items);
-    console.log(title);
+
+    console.log('current list:', {list});
+
     const [name, setName] = useState('');
     const [amount, setAmount] = useState(1);
 
@@ -41,12 +43,12 @@ function List() {
     
 
     function addItem() {
-        console.log('adding', {amount}, {name});
+        console.log('adding', {amount}, {name}, list.id);
 
         dispatch({type: 'ADD_ITEM', payload:{
             name: name, 
             amount: amount,
-            list_id: title.id
+            list_id: list.id
         }})
         setName('');
         setAmount(1);
@@ -55,8 +57,8 @@ function List() {
     return (
         <Container>
             <Grid align="center">
-                <Typography variant="h3" align="center" color="primary">{title.location}</Typography>
-                <Typography variant="subtitle1" align="center" color="primary">{title.start_date}</Typography>
+                <Typography variant="h3" align="center" color="primary">{list.location}</Typography>
+                <Typography variant="subtitle1" align="center" color="primary">{list.start_date}</Typography>
                 <div className={classes.input}>
                     <TextField className={classes.numberInput}
 

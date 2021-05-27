@@ -5,6 +5,8 @@ const pool = require('../modules/pool');
 
 // Get all lists
 router.get('/', (req, res) => {
+    console.log(req.user.id);
+    
   let queryText = `SELECT * FROM "list" WHERE user_id= ${req.user.id};`;
   pool.query(queryText).then(result => {
     // Sends back the results in an object

@@ -36,7 +36,7 @@ function Prompt() {
     const dispatch = useDispatch();
 
     function packingList() {
-        console.log('adding list for:', {where}, {when}, 'to saved lists');
+        console.log('adding to saved lists:', {where}, {when}, 'to saved lists');
         if (where && when && days) {
             dispatch(
                 {
