@@ -35,7 +35,7 @@ function List() {
     const [name, setName] = useState('');
     const [amount, setAmount] = useState(1);
 
-    dispatch({type: 'FETCH_LIST'})
+    // dispatch({type: 'FETCH_LIST'})
 
     function addItem() {
         console.log('adding', {amount}, {name});

@@ -85,7 +85,7 @@ function Nav() {
         <Grid className={classes.logo}
         >
           <Grid item>
-            <CardTravelIcon className={classes.suitcase} color="secondary" align="center" fontSize='medium' />
+            <CardTravelIcon className={classes.suitcase} color="secondary" align="center" size='medium' />
           </Grid>
           <Grid item>
 

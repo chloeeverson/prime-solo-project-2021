@@ -62,10 +62,12 @@ function LoginForm() {
     <>
    
     <Container align="center" className={classes.login}>
-      <Grid noValidate autoComplete="off" onSubmit={login} lg={2} xs={6} sm={3} md={3}>
+      <Grid noValidate autoComplete="off" onSubmit={login}>
         {/* <Card>
           <CardHeader> */}
+          <Grid item lg={2} xs={6} sm={3} md={3}>
           <Typography variant="h5" className={classes.signin}>Sign In</Typography>
+          </Grid>
           {errors.loginMessage && (
         <h3 className="alert" role="alert">
           {errors.loginMessage}
@@ -73,12 +75,18 @@ function LoginForm() {
       )}
           {/* </CardHeader>
           <CardContent> */}
+          <Grid item lg={2} xs={6} sm={3} md={3}>
           <TextField noValidate autoComplete="off" required variant="standard" label="Username" color="secondary" value={username}
             onChange={(event) => setUsername(event.target.value)}/>
+            </Grid>
+            <Grid item lg={2} xs={6} sm={3} md={3}>
           <TextField className={classes.password} required label="Password" variant="standard" color="secondary" value={password} 
             type="password" noValidate autoComplete="off" onChange={(event) => setPassword(event.target.value)}/>
+            </Grid>
           <ThemeProvider theme={theme}>
+          <Grid item lg={2} xs={6} sm={3} md={3}>
           <Button variant="contained" className={classes.btn} color="primary" align="center" onClick={login}>Sign In</Button>
+          </Grid>
             </ThemeProvider>
   
           {/* </CardContent>

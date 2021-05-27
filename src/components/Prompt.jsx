@@ -36,10 +36,10 @@ function Prompt() {
     const dispatch = useDispatch();
 
     function packingList() {
-        console.log('adding prompts for location:', {location});
+        console.log('adding list for:', {where}, {when});
         if (where && when && days) {
             dispatch({
-                type: 'ADD_PROMPTS',
+                type: 'ADD_LIST',
                 payload: {
                     location: where,
                     start_date: when,
