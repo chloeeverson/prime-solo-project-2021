@@ -38,7 +38,7 @@ const useStyles = makeStyles({
     alignItems: 'center'
   },
   suitcase: {
-    marginLeft: 15,
+    marginLeft: 25,
   }
 
 })
@@ -67,21 +67,21 @@ function Nav() {
 
   if (user.id != null && location.pathname === "/user") {
     loginLinkData.path = '/prompt';
-    loginLinkData.text = 'Create New List';
+    loginLinkData.text = 'New List';
 
   }
 
-  if (user.id != null && location.pathname != "/list" && location.pathname != "/prompt") {
-    dispatch({type: 'RESET_CURRENT_LIST'})
+  // if (user.id != null && location.pathname != "/list" && location.pathname != "/prompt") {
+  //   dispatch({type: 'RESET_CURRENT_LIST'})
 
-  }
+  // }
 
   
 
   return (
 
     <div className="nav">
-      <Link
+      <Link 
         // className="navLink" 
         to={loginLinkData.path}>
         {loginLinkData.text}
@@ -93,11 +93,11 @@ function Nav() {
         <Grid className={classes.logo}
         >
           <Grid item>
-            <CardTravelIcon className={classes.suitcase} color="secondary" align="center" size='medium' />
+            <CardTravelIcon className={classes.suitcase} color="secondary" align="center" size='large' />
           </Grid>
           <Grid item>
 
-            <Typography className={classes.title} variant="subtitle1" color="textSecondary" align="center">packMe</Typography>
+            <Typography className={classes.title} variant="h6" color="textSecondary" align="center">packMe</Typography>
             {/* <Grid item className={classes.titleHome}>
           <Typography align="center" variant="h1">SAVED LISTS</Typography>
           </Grid> */}

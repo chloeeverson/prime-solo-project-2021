@@ -35,4 +35,35 @@ router.post('/',  (req, res) => {
     });
 });
 
+router.delete('/:id', (req, res) => {
+  console.log(req.params.id);
+
+  console.log('Delete request for id', req.params.id);
+  let sqlText = `DELETE FROM item WHERE id = $1;`;
+  pool.query(sqlText, [req.params.id])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(`Error making databse query ${sqlText}`, err);
+      res.sendStatus(500)
+    })
+
+});
+// router.delete('/:id', rejectUnauthenticated, (req, res) => {
+//   console.log(req.params.id);
+
+//   console.log('Delete request for id', req.params.id);
+//   let sqlText = `DELETE FROM item WHERE id = $1 AND user_id = ${req.user.id};`;
+//   pool.query(sqlText, [req.params.id])
+//     .then((result) => {
+//       res.sendStatus(200);
+//     })
+//     .catch((err) => {
+//       console.log(`Error making databse query ${sqlText}`, err);
+//       res.sendStatus(500)
+//     })
+
+// });
+
 module.exports = router;

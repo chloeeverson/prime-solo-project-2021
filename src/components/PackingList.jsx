@@ -20,7 +20,7 @@ const useStyles = makeStyles({
         // marginTop: 20,
     },
     input: {
-        marginTop: 20,
+        marginTop: 30,
        
     },
     addBtn: {
@@ -102,11 +102,11 @@ function PackingList() {
             location: list.where,
             start_date: list.when,
             days: list.days,
-        }},
-        {type: 'ADD_ITEM', payload:{
-            name: name, 
-            amount: amount,
         }})
+        // {type: 'ADD_ITEM', payload:{
+        //     name: name, 
+        //     amount: amount,
+        // }})
         // console.log('adding', {amount}, {name});
         // dispatch({type: 'ADD_ITEM', payload:{
         //     name: name, 
@@ -115,6 +115,7 @@ function PackingList() {
         setName('');
         setAmount(1);
     }
+    
     
 
 
@@ -157,14 +158,17 @@ function PackingList() {
                   tabIndex={-1}
                   disableRipple
                   inputProps={{ 'aria-labelledby': labelId }}
-                  color="textSecondary"
+                  color="default"
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={`${value.amount} ${value.name}`} />
               <ListItemSecondaryAction>
-                <IconButton edge="end" aria-label="delete">
-                <EditIcon onClick={triggerEdit} />
-                  <DeleteIcon onClick={triggerDelete}/>
+              <IconButton onClick={()=> dispatch({type:'EDIT_ITEM', payload: value.id})} edge="end" aria-label="edit">
+              <EditIcon />
+              </IconButton>
+                <IconButton onClick={()=> dispatch({type:'DELETE_ITEM', payload: value.id})} edge="end" aria-label="delete">
+              
+                  <DeleteIcon />
                   
                 </IconButton>
               </ListItemSecondaryAction>
