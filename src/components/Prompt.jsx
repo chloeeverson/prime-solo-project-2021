@@ -39,13 +39,13 @@ function Prompt() {
         console.log('adding to saved lists:', {where}, {when}, 'to saved lists');
         if (where && when && days) {
             dispatch(
-                {
-                type: 'ADD_LIST',
-                payload: {
-                    location: where,
-                    start_date: when,
-                    days: days,
-                }},
+                // {
+                // type: 'ADD_LIST',
+                // payload: {
+                //     location: where,
+                //     start_date: when,
+                //     days: days,
+                // }},
                 {type: 'ADD_CURRENT_LIST',
                 payload: {
                     location: where,
@@ -68,7 +68,7 @@ function Prompt() {
                 <Typography className={classes.prompt} lg={2} variant="subtitle1">Where are you going?</Typography>
             </Grid>
             <Grid item>
-                <TextField className={classes.prompt} variant="filled" label="City" required value={where}
+                <TextField className={classes.prompt} variant="filled"  required value={where}
             onChange={(event) => setWhere(event.target.value)} />
             </Grid>
             <Grid item>
@@ -84,7 +84,7 @@ function Prompt() {
                 <Typography className={classes.prompt} lg={2} variant="subtitle1">How many days?</Typography>
             </Grid>
             <Grid item>
-                <TextField className={classes.prompt} type="number" variant="filled" label="Number" required value={days}
+                <TextField className={classes.prompt} type="number" variant="filled"  required value={days}
             onChange={(event) => setDays(event.target.value)}/>
             </Grid>
             <Button variant="contained" className={classes.btn} size="large" color="primary" onClick={packingList} endIcon={<ArrowForwardIosIcon />}>Packing List</Button>

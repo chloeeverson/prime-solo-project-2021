@@ -20,7 +20,7 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Prompt from '../Prompt';
-import List from '../List'
+import PackingList from '../PackingList'
 
 import './App.css';
 
@@ -79,7 +79,7 @@ function App() {
             exact
             path="/list"
           >
-            <List />
+            <PackingList />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will
