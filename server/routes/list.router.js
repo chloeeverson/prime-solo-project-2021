@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
     const user_id = req.user.id;
     console.log(`Adding list`, newList);
 
-    try {
+    // try {
 //     //     //Destructurs req.body
 //         // const {
 //         //     year_number,
@@ -73,8 +73,8 @@ router.post('/', async (req, res) => {
                    const insertLineItemValues = [item.amount, item.name, listId];
 //             // const insertLineItemText = INSERT INTO "" ("year_id", "stock_id", "value", "stock_amount", "game_id") VALUES ($1, $2, $3, $4, $5);
 //             // const insertLineItemValues = [yearId, stock.stock_id, stock.value, stock.stock_amount, game_id];
-//             return client.query(insertLineItemText, insertLineItemValues);
-//         }));
+            return client.query(insertLineItemText, insertLineItemValues);
+        }));
         await client.query('COMMIT')
         res.sendStatus(201);
     } catch (error) {

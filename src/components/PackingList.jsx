@@ -87,12 +87,12 @@ function PackingList() {
         // }})
         //    setName('');
         // setAmount(1);
-        // dispatch({type: 'STORE_ITEM', payload:{
-        //     name: name, 
-        //     amount: amount,
-        // }})
-        // setName('');
-        // setAmount(1);
+        dispatch({type: 'STORE_ITEM', payload:{
+            name: name, 
+            amount: amount,
+        }})
+        setName('');
+        setAmount(1);
     }
 
     function saveList(){
@@ -102,16 +102,16 @@ function PackingList() {
             location: list.where,
             start_date: list.when,
             days: list.days,
-        }})
+        }},
         {type: 'ADD_ITEM', payload:{
             name: name, 
             amount: amount,
         }})
-        console.log('adding', {amount}, {name});
-        dispatch({type: 'ADD_ITEM', payload:{
-            name: name, 
-            amount: amount,
-        }})
+        // console.log('adding', {amount}, {name});
+        // dispatch({type: 'ADD_ITEM', payload:{
+        //     name: name, 
+        //     amount: amount,
+        // }})
         setName('');
         setAmount(1);
     }
