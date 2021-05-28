@@ -73,20 +73,20 @@ function PackingList() {
     setChecked(newChecked);
   };
 
-    useEffect(()=> {
-        dispatch({type: 'FETCH_ITEMS'})
-    }, []);
+    // useEffect(()=> {
+    //     dispatch({type: 'FETCH_ITEMS'})
+    // }, []);
     
 
     function addItem() {
         // console.log('adding', {amount}, {name});
-        dispatch(
-        {type: 'ADD_ITEM', payload:{
-            name: name, 
-            amount: amount,
-        }})
-           setName('');
-        setAmount(1);
+        // dispatch(
+        // {type: 'ADD_ITEM', payload:{
+        //     name: name, 
+        //     amount: amount,
+        // }})
+        //    setName('');
+        // setAmount(1);
         // dispatch({type: 'STORE_ITEM', payload:{
         //     name: name, 
         //     amount: amount,
@@ -103,15 +103,15 @@ function PackingList() {
             start_date: list.when,
             days: list.days,
         }})
-        // {type: 'ADD_ITEM', payload:{
-        //     name: name, 
-        //     amount: amount,
-        // }})
-        // console.log('adding', {amount}, {name});
-        // dispatch({type: 'ADD_ITEM', payload:{
-        //     name: name, 
-        //     amount: amount,
-        // }})
+        {type: 'ADD_ITEM', payload:{
+            name: name, 
+            amount: amount,
+        }})
+        console.log('adding', {amount}, {name});
+        dispatch({type: 'ADD_ITEM', payload:{
+            name: name, 
+            amount: amount,
+        }})
         setName('');
         setAmount(1);
     }
