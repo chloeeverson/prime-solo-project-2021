@@ -20,29 +20,34 @@ router.get('/', (req, res) => {
 
 // Adds a new list to saved lists
 // Request body must be a list object with location, date, days.
-router.post('/',  (req, res) => {
-  let newList = req.body;
-  const user_id = req.user.id;
-  console.log(`Adding list`, newList);
+// router.post('/',  (req, res) => {
+//   let newList = req.body;
+//   const user_id = req.user.id;
+//   console.log(`Adding list`, newList);
 
-  let queryText = `INSERT INTO "list" ("location", "start_date", "days", "user_id")
-                   VALUES ($1, $2, $3, $4);`;
-  pool.query(queryText, [newList.location, newList.start_date, newList.days, user_id])
-    .then(result => {
-      res.sendStatus(201);
-    })
-    .catch(error => {
-      console.log(`Error adding new list`, error);
-      res.sendStatus(500);
-    });
-});
+//   let queryText = `INSERT INTO "list" ("location", "start_date", "days", "user_id")
+//                    VALUES ($1, $2, $3, $4);`;
+//   pool.query(queryText, [newList.location, newList.start_date, newList.days, user_id])
+//     .then(result => {
+//       res.sendStatus(201);
+//     })
+//     .catch(error => {
+//       console.log(`Error adding new list`, error);
+//       res.sendStatus(500);
+//     });
+// });
 
 router.post('/', async (req, res) => {
     const client = await pool.connect();
     try {
-    let newList = req.body;
+        const {
+            location,
+            start_date,
+            days,
+            items
+        } = req.body;
     const user_id = req.user.id;
-    console.log(`Adding list`, newList);
+    console.log(`Adding list`, {location} , {start_date});
 
     // try {
 //     //     //Destructurs req.body
@@ -57,7 +62,7 @@ router.post('/', async (req, res) => {
         //Creates variable(resultset) to hold id after INSERT
         let queryText = await client.query(`INSERT INTO "list" ("location", "start_date", "days", "user_id")
                    VALUES ($1, $2, $3, $4)
-            RETURNING id`,   [newList.location, newList.start_date, newList.days, user_id]);
+            RETURNING id`,   [location, start_date, days, user_id]);
             const listId = queryText.rows[0].id;
             
 //         // const yearInsertResults = await client.query(`INSERT INTO "year" ("year_number", "game_id", "total_yield", "total_money")

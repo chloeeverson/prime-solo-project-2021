@@ -49,7 +49,7 @@ function PackingList() {
     const dispatch = useDispatch();
 
     const list = useSelector(store => store.currentList);
-    const items = useSelector(store => store.items);
+    const items = useSelector(store => store.storeItem);
 
     console.log('current list:', {list});
     console.log('stored items:' , {items});
@@ -96,17 +96,18 @@ function PackingList() {
     }
 
     function saveList(){
-        console.log('saving list', list.location, list.date)
-        console.log('adding', {amount}, {name});
+        console.log('saving list', list.location, list.start_date)
+        console.log('adding', {items});
         dispatch({type: 'ADD_LIST', payload:{
-            location: list.where,
-            start_date: list.when,
+            location: list.location,
+            start_date: list.start_date,
             days: list.days,
-        }},
-        {type: 'ADD_ITEM', payload:{
-            name: name, 
-            amount: amount,
+            items: items,
         }})
+        // {type: 'ADD_ITEM', payload:{
+        //     name: name, 
+        //     amount: amount,
+        // }})
         // console.log('adding', {amount}, {name});
         // dispatch({type: 'ADD_ITEM', payload:{
         //     name: name, 
