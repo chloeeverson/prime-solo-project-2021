@@ -24,6 +24,11 @@ function UserPage() {
     dispatch({type: 'FETCH_LIST'})
   },[]);
   
+  function handleList(trip){
+    console.log('clicked on list' , trip.location)
+  }
+
+
   return (
     // <div className="container">
     //   <h2>Welcome, {user.username}!</h2>
@@ -35,7 +40,7 @@ function UserPage() {
     <Typography variant="h3" align="center" color="primary">SAVED LISTS</Typography>
     <ul>
         {list.map((trip) => 
-          <li key={trip.id}>{trip.location} {moment(trip.start_date).format('LL')}</li>  
+          <li onClick={() => handleList(trip)} key={trip.id}>{trip.location} {moment(trip.start_date).format('LL')}</li>  
         )}
       </ul>
     </ThemeProvider>
