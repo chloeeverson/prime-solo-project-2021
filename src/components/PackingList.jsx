@@ -1,6 +1,8 @@
 import { Typography, Grid, TextField, makeStyles, Button, Container , createMuiTheme, ThemeProvider} from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
+import {useHistory} from 'react-router-dom'
+
 import prompts from '../redux/reducers/prompts.reducer';
 import moment from 'moment';
 import List from '@material-ui/core/List';
@@ -47,6 +49,7 @@ const theme = createMuiTheme({
 function PackingList() {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const list = useSelector(store => store.currentList);
     const items = useSelector(store => store.storeItem);
@@ -79,6 +82,7 @@ function PackingList() {
     
 
     function addItem() {
+      console.log({items});
         // console.log('adding', {amount}, {name});
         // dispatch(
         // {type: 'ADD_ITEM', payload:{
@@ -103,7 +107,7 @@ function PackingList() {
             start_date: list.start_date,
             days: list.days,
             items: items,
-        }})
+        }});
         // {type: 'ADD_ITEM', payload:{
         //     name: name, 
         //     amount: amount,
@@ -113,8 +117,9 @@ function PackingList() {
         //     name: name, 
         //     amount: amount,
         // }})
-        setName('');
-        setAmount(1);
+        dispatch({type: 'RESET_ITEMS'});
+        history.push('/user');
+
     }
     
     
@@ -143,7 +148,7 @@ function PackingList() {
                     }} value={name}
                         onChange={(event) => setName(event.target.value)} />
                     
-                    <Button variant="contained" className={classes.addBtn} size="medium" color="textSecondary" onClick={addItem}>Add Item</Button>
+                    <Button variant="contained" className={classes.addBtn} size="medium" color="secondary" onClick={addItem}>Add Item</Button>
                     
                 </div>
                 {/* <ul> */}
