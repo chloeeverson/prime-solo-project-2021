@@ -10,14 +10,14 @@ const useStyles = makeStyles({
     
   },
   btn: {
-      marginTop: 20,
-      marginBottom: 15,
+      marginTop: 30,
+      marginBottom: 25,
   },
   signup: {
-      marginBottom: 10
+      marginBottom: 15
   },
   password: {
-    marginTop: 10,
+    marginTop: 15,
   }
 
 })

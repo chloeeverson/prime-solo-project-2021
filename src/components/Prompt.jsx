@@ -9,10 +9,11 @@ import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
     prompt: {
-        marginBottom: 20,
+        marginBottom: 30,
+
     },
     title: {
-        marginTop: 70,
+        marginTop: 50,
         marginBottom: 30,
     },
     btn: {
@@ -39,13 +40,13 @@ function Prompt() {
         console.log('adding to saved lists:', {where}, {when}, 'to saved lists');
         if (where && when && days) {
             dispatch(
-                {
-                type: 'ADD_LIST',
-                payload: {
-                    location: where,
-                    start_date: when,
-                    days: days,
-                }},
+                // {
+                // type: 'ADD_LIST',
+                // payload: {
+                //     location: where,
+                //     start_date: when,
+                //     days: days,
+                // }},
                 {type: 'ADD_CURRENT_LIST',
                 payload: {
                     location: where,
@@ -68,15 +69,14 @@ function Prompt() {
                 <Typography className={classes.prompt} lg={2} variant="subtitle1">Where are you going?</Typography>
             </Grid>
             <Grid item>
-                <TextField className={classes.prompt} variant="filled" label="City" required value={where}
+                <TextField className={classes.prompt} variant="outlined"  required value={where}
             onChange={(event) => setWhere(event.target.value)} />
             </Grid>
             <Grid item>
                 <Typography className={classes.prompt} lg={2} variant="subtitle1">Start date:</Typography>
             </Grid>
             <Grid item>
-                <TextField className={classes.prompt} type="date" variant="filled" 
-                // label="MM/DD/YYYY" 
+                <TextField className={classes.prompt} type="date" variant="outlined" 
                 required value={when}
             onChange={(event) => setWhen(event.target.value)}/>
             </Grid>
@@ -84,7 +84,7 @@ function Prompt() {
                 <Typography className={classes.prompt} lg={2} variant="subtitle1">How many days?</Typography>
             </Grid>
             <Grid item>
-                <TextField className={classes.prompt} type="number" variant="filled" label="Number" required value={days}
+                <TextField className={classes.prompt} type="number" variant="outlined"  required value={days}
             onChange={(event) => setDays(event.target.value)}/>
             </Grid>
             <Button variant="contained" className={classes.btn} size="large" color="primary" onClick={packingList} endIcon={<ArrowForwardIosIcon />}>Packing List</Button>

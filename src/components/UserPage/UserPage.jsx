@@ -32,7 +32,7 @@ function UserPage() {
     // </div>
     
 <ThemeProvider theme={theme}>
-    <Typography variant="h2" align="center" color="primary">SAVED LISTS</Typography>
+    <Typography variant="h3" align="center" color="primary">SAVED LISTS</Typography>
     <ul>
         {list.map((trip) => 
           <li key={trip.id}>{trip.location} {moment(trip.start_date).format('LL')}</li>  

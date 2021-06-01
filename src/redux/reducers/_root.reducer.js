@@ -5,6 +5,7 @@ import prompts from './prompts.reducer';
 import list from './list.reducer';
 import items from './item.reducer';
 import currentList from './currentList.reducer'
+import storeItem from './storeItem.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   list,
   items,
   currentList,
+  storeItem,
 });
 
 export default rootReducer;
