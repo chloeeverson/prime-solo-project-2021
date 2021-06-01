@@ -40,7 +40,7 @@ function UserPage() {
     <Typography variant="h3" align="center" color="primary">SAVED LISTS</Typography>
     <ul>
         {list.map((trip) => 
-          <li onClick={handleList(trip)} key={trip.id}>{trip.location} {moment(trip.start_date).format('LL')}</li>  
+          <li onClick={() => handleList(trip)} key={trip.id}>{trip.location} {moment(trip.start_date).format('LL')}</li>  
         )}
       </ul>
     </ThemeProvider>
