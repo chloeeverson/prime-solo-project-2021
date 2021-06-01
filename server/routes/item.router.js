@@ -19,21 +19,21 @@ router.get('/', (req, res) => {
 
 // Adds a new item to the packing list
 // Request body must be an item object with an amount, name, and list id.
-router.post('/',  (req, res) => {
-  let newItem = req.body;
-  console.log(`Adding item`, newItem);
+// router.post('/',  (req, res) => {
+//   let newItem = req.body;
+//   console.log(`Adding item`, newItem);
 
-  let queryText = `INSERT INTO "item" ("amount", "name")
-                   VALUES ($1, $2);`;
-  pool.query(queryText, [newItem.amount, newItem.name])
-    .then(result => {
-      res.sendStatus(201);
-    })
-    .catch(error => {
-      console.log(`Error adding new item`, error);
-      res.sendStatus(500);
-    });
-});
+//   let queryText = `INSERT INTO "item" ("amount", "name")
+//                    VALUES ($1, $2);`;
+//   pool.query(queryText, [newItem.amount, newItem.name])
+//     .then(result => {
+//       res.sendStatus(201);
+//     })
+//     .catch(error => {
+//       console.log(`Error adding new item`, error);
+//       res.sendStatus(500);
+//     });
+// });
 
 router.delete('/:id', (req, res) => {
   console.log(req.params.id);

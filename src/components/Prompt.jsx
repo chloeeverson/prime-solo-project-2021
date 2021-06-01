@@ -77,7 +77,6 @@ function Prompt() {
             </Grid>
             <Grid item>
                 <TextField className={classes.prompt} type="date" variant="outlined" 
-                // label="MM/DD/YYYY" 
                 required value={when}
             onChange={(event) => setWhen(event.target.value)}/>
             </Grid>

@@ -1,6 +1,8 @@
 import { Typography, Grid, TextField, makeStyles, Button, Container , createMuiTheme, ThemeProvider} from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
+import {useHistory} from 'react-router-dom'
+
 import prompts from '../redux/reducers/prompts.reducer';
 import moment from 'moment';
 import List from '@material-ui/core/List';
@@ -47,9 +49,10 @@ const theme = createMuiTheme({
 function PackingList() {
     const classes = useStyles();
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const list = useSelector(store => store.currentList);
-    const items = useSelector(store => store.items);
+    const items = useSelector(store => store.storeItem);
 
     console.log('current list:', {list});
     console.log('stored items:' , {items});
@@ -73,36 +76,38 @@ function PackingList() {
     setChecked(newChecked);
   };
 
-    useEffect(()=> {
-        dispatch({type: 'FETCH_ITEMS'})
-    }, []);
+    // useEffect(()=> {
+    //     dispatch({type: 'FETCH_ITEMS'})
+    // }, []);
     
 
     function addItem() {
+      console.log({items});
         // console.log('adding', {amount}, {name});
-        dispatch(
-        {type: 'ADD_ITEM', payload:{
-            name: name, 
-            amount: amount,
-        }})
-           setName('');
-        setAmount(1);
-        // dispatch({type: 'STORE_ITEM', payload:{
+        // dispatch(
+        // {type: 'ADD_ITEM', payload:{
         //     name: name, 
         //     amount: amount,
         // }})
-        // setName('');
+        //    setName('');
         // setAmount(1);
+        dispatch({type: 'STORE_ITEM', payload:{
+            name: name, 
+            amount: amount,
+        }})
+        setName('');
+        setAmount(1);
     }
 
     function saveList(){
-        console.log('saving list', list.location, list.date)
-        console.log('adding', {amount}, {name});
+        console.log('saving list', list.location, list.start_date)
+        console.log('adding', {items});
         dispatch({type: 'ADD_LIST', payload:{
-            location: list.where,
-            start_date: list.when,
+            location: list.location,
+            start_date: list.start_date,
             days: list.days,
-        }})
+            items: items,
+        }});
         // {type: 'ADD_ITEM', payload:{
         //     name: name, 
         //     amount: amount,
@@ -112,8 +117,9 @@ function PackingList() {
         //     name: name, 
         //     amount: amount,
         // }})
-        setName('');
-        setAmount(1);
+        dispatch({type: 'RESET_ITEMS'});
+        history.push('/user');
+
     }
   
     
@@ -142,7 +148,7 @@ function PackingList() {
                     }} value={name}
                         onChange={(event) => setName(event.target.value)} />
                     
-                    <Button variant="contained" className={classes.addBtn} size="medium" color="textSecondary" onClick={addItem}>Add Item</Button>
+                    <Button variant="contained" className={classes.addBtn} size="medium" color="secondary" onClick={addItem}>Add Item</Button>
                     
                 </div>
                 {/* <ul> */}
