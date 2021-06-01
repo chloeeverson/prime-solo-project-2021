@@ -118,7 +118,7 @@ function PackingList() {
         //     amount: amount,
         // }})
         dispatch({type: 'RESET_ITEMS'});
-        history.push('/user');
+        // history.push('/user');
 
     }
     
