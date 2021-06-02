@@ -135,7 +135,7 @@ useEffect(() => {
     console.log('in useEffect param:', id)
     dispatch({type: 'FETCH_SAVED_LIST' , payload: id})
     dispatch({type: 'FETCH_ITEMS' , payload: id})
-  },[]);
+  }, []);
     
   function handleEdit(){
     console.log('in handleEdit');
@@ -262,7 +262,7 @@ setDate( trip.start_date );
               <IconButton onClick={()=> dispatch({type:'EDIT_ITEM', payload: value.id})} edge="end" aria-label="edit">
               <EditIcon />
               </IconButton>
-                <IconButton onClick={()=> dispatch({type:'DELETE_ITEM', payload: value.id})} edge="end" aria-label="delete">
+                <IconButton onClick={()=> dispatch({type:'DELETE_ITEM', payload: {item: value.id, list: id }})} edge="end" aria-label="delete">
               
                   <DeleteIcon />
                   

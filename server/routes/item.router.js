@@ -5,7 +5,7 @@ const pool = require('../modules/pool');
 
 // Get all items
 router.get('/:id', (req, res) => {
-  req.params
+  console.log('in items router:' ,req.params.id)
   let queryText = 'SELECT id, amount, name FROM "item" WHERE list_id=$1;';
   pool.query(queryText, [req.params.id]).then(result => {
     // Sends back the results in an object
@@ -45,7 +45,7 @@ router.delete('/:id', (req, res) => {
       res.sendStatus(200);
     })
     .catch((err) => {
-      console.log(`Error making databse query ${sqlText}`, err);
+      console.log(`Error making database query ${sqlText}`, err);
       res.sendStatus(500)
     })
 
@@ -77,6 +77,19 @@ router.put('/:id', (req, res) => {
 //       res.sendStatus(500)
 //     })
 
+// });
+
+// router.get('/', (req, res) => {
+  
+// let queryText = `SELECT * FROM "item";`;
+// pool.query(queryText).then(result => {
+//   // Sends back the results in an object
+//   res.send(result.rows);
+// })
+// .catch(error => {
+//   console.log('error getting lists', error);
+//   res.sendStatus(500);
+// });
 // });
 
 module.exports = router;
