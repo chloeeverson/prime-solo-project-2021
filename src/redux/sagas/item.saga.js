@@ -12,11 +12,11 @@ function* addItem(action) {
     }
 }
 
-function* fetchItems(){
+function* fetchItems(action){
     try{
       //yield makes us wait until the async thing (axios) is done
       //keep the response in a variable to access later
-      const response = yield axios.get('/items/')
+      const response = yield axios.get(`/items/${action.payload}`)
       //when its done successfully then 'dispatch' the action to set reducer
       yield put({type: 'SET_ITEMS', payload: response.data})
   

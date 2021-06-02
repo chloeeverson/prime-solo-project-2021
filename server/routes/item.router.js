@@ -4,10 +4,10 @@ const router = express.Router();
 const pool = require('../modules/pool');
 
 // Get all items
-router.get('/', (req, res) => {
+router.get('/:id', (req, res) => {
   req.params
-  let queryText = 'SELECT amount, name FROM "item";';
-  pool.query(queryText).then(result => {
+  let queryText = 'SELECT amount, name FROM "item" WHERE list_id=$1;';
+  pool.query(queryText, [req.params.id]).then(result => {
     // Sends back the results in an object
     res.send(result.rows);
   })

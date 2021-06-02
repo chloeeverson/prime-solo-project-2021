@@ -48,17 +48,20 @@ const theme = createMuiTheme({
 
 
 function SavedList() {
-    // const classes = useStyles();
+    const classes = useStyles();
     const dispatch = useDispatch();
     const {id} = useParams();
     const history = useHistory();
     const [editMode, setEditMode] = useState(false);
+
+    // const [editTitle, setEditTitle] = useState(false);
+    // const [editDate, setEditDate] = useState(false);
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
 
     const trip = useSelector(store => store.savedList);
     console.log(trip)
-    // const items = useSelector(store => store.items);
+    const items = useSelector(store => store.items);
 
 //     console.log('current list:', {list});
 //     console.log('stored items:' , {items});
@@ -67,20 +70,20 @@ function SavedList() {
 //     const [name, setName] = useState('');
 //     const [amount, setAmount] = useState(1);
 
-//     const [checked, setChecked] = useState([0]);
+    const [checked, setChecked] = useState([0]);
 
-//   const handleToggle = (value) => () => {
-//     const currentIndex = checked.indexOf(value);
-//     const newChecked = [...checked];
+  const handleToggle = (value) => () => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
 
-//     if (currentIndex === -1) {
-//       newChecked.push(value);
-//     } else {
-//       newChecked.splice(currentIndex, 1);
-//     }
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
 
-//     setChecked(newChecked);
-//   };
+    setChecked(newChecked);
+  };
 
 //     // useEffect(()=> {
 //     //     dispatch({type: 'FETCH_ITEMS'})
@@ -131,19 +134,37 @@ function SavedList() {
 useEffect(() => {
     console.log('in useEffect param:', id)
     dispatch({type: 'FETCH_SAVED_LIST' , payload: id})
+    dispatch({type: 'FETCH_ITEMS' , payload: id})
   },[]);
     
-  
-    function handleEdit(){
-        console.log('in handleEdit');
+  function handleEdit(){
+    console.log('in handleEdit');
 // Turn on edit mode
 setEditMode(true);
 
-// Set values in state from our book reducer
+// Set values in state from our list reducer
 setTitle( trip.location);
 setDate( trip.start_date );
 
-    }
+}
+
+
+  
+//     function handleTitleEdit(){
+//         console.log('in handleTitleEdit');
+// // Turn on edit mode
+// setEditTitle(true);
+
+// // Set values in state from our book reducer
+// setTitle( trip.location);
+
+// function handleDateEdit(){
+//     setEditDate(true);
+//     setDate( trip.start_date );
+
+// }
+
+//     }
     function handleSave(){
         console.log('in handleSave');
         const updatedList = {
@@ -160,12 +181,9 @@ setDate( trip.start_date );
 
 
 
-    return (
-    
-  
-           
-        // <Container>
-        <>
+    return ( 
+        <Container>
+            
            
             
                 {trip && trip.location && editMode ?
@@ -202,67 +220,67 @@ setDate( trip.start_date );
                 <EditIcon onClick={handleEdit} />
                 </Grid>
                 </Grid>}
-                </>
-            //    {/* <div className={classes.input}>
-            //        <TextField className={classes.numberInput} */}
-// {/* 
-//                         id="standard-number"
-//                        label="Amount"
-//                   type="number"
-//                   InputLabelProps={{ */}
-//                             {/* shrink: true,
-//                       }}
-//                      value={amount}
-//                        onChange={(event) => setAmount(event.target.value)}
-//                   />
-//                   <TextField className={classes.itemInput} type="text" id="standard-number" label="Item" InputLabelProps={{ */}
-//                          {/* shrink: true,
-//                      }} value={name}
-//                      onChange={(event) => setName(event.target.value)} />
+                
+                {/* <div className={classes.input}>
+                  <TextField className={classes.numberInput}  
+ 
+                        id="standard-number"
+                       label="Amount"
+                  type="number"
+                   InputLabelProps={{ 
+                         shrink: true,
+                       }}
+                      value={amount}
+                       onChange={(event) => setAmount(event.target.value)}
+                   />
+                 <TextField className={classes.itemInput} type="text" id="standard-number" label="Item" InputLabelProps={{ 
+                        shrink: true,
+                    }} value={name}
+                     onChange={(event) => setName(event.target.value)} />
                     
-//                      <Button variant="contained" className={classes.addBtn} size="medium" color="secondary" onClick={addItem}>Add Item</Button>
+                   <Button variant="contained" className={classes.addBtn} size="medium" color="secondary" onClick={addItem}>Add Item</Button>
                     
-//                  </div>
-//                  {/* <ul> */}
-//                  {/* <List className={classes.root}> */}
-//        {/* {items.map((value) => { */}
-//     {/* //     const labelId = `checkbox-list-label-${value}`;
-//     //     return (
-//     //         <ListItem key={value.id} role={undefined} dense button onClick={handleToggle(value)}>
-//     //           <ListItemIcon>
-//     //             <Checkbox */}
-//     {/* //               edge="start"
-//     //               checked={checked.indexOf(value) !== -1}
-//     //               tabIndex={-1}
-//     //               disableRipple
-//     //               inputProps={{ 'aria-labelledby': labelId }}
-//     //               color="default"
-//     //             />
-//     //           </ListItemIcon>
-//     //           <ListItemText id={labelId} primary={`${value.amount} ${value.name}`} />
-//     //           <ListItemSecondaryAction>
-//     //           <IconButton onClick={()=> dispatch({type:'EDIT_ITEM', payload: value.id})} edge="end" aria-label="edit">
-//     //           <EditIcon />
-//     //           </IconButton>
-//     //             <IconButton onClick={()=> dispatch({type:'DELETE_ITEM', payload: value.id})} edge="end" aria-label="delete">
+                 </div> */}
+                 <ul>
+                 <List className={classes.root}> 
+       {items.map((value) => {
+        const labelId = `checkbox-list-label-${value}`;
+        return (
+            <ListItem key={value.id} role={undefined} dense button onClick={handleToggle(value)}>
+              <ListItemIcon>
+                <Checkbox
+                  edge="start"
+                  checked={checked.indexOf(value) !== -1}
+                  tabIndex={-1}
+                  disableRipple
+                  inputProps={{ 'aria-labelledby': labelId }}
+                  color="default"
+                />
+              </ListItemIcon>
+              <ListItemText id={labelId} primary={`${value.amount} ${value.name}`} />
+              <ListItemSecondaryAction>
+              <IconButton onClick={()=> dispatch({type:'EDIT_ITEM', payload: value.id})} edge="end" aria-label="edit">
+              <EditIcon />
+              </IconButton>
+                <IconButton onClick={()=> dispatch({type:'DELETE_ITEM', payload: value.id})} edge="end" aria-label="delete">
               
-//     //               <DeleteIcon />
+                  <DeleteIcon />
                   
-//     //             </IconButton>
-//     //           </ListItemSecondaryAction>
-//     //         </ListItem> */}
-//     {/* //       );
-//     //     })}
-//     //   </List>
-//     //     {/* {items.map((item) => 
-//     //       <li key={item.id}>{item.amount} {item.name}</li>  
-//     //     )}
-//     //   </ul> */}
-//     {/* //   <ThemeProvider theme={theme}>
-//     //   <Button variant="contained" className={classes.saveBtn} size="large" color="primary" onClick={saveList}>SAVE LIST</Button>
-//     //   </ThemeProvider>
-//     //         </Grid> */}
-//     {/* //         </Container> */}
+                </IconButton>
+              </ListItemSecondaryAction>
+            </ListItem> 
+           );
+        })}
+      </List>
+     {/* {items.map((item) => 
+    <li key={item.id}>{item.amount} {item.name}</li>  
+    )} */}
+  </ul>  
+  {/* <ThemeProvider theme={theme}>
+  <Button variant="contained" className={classes.saveBtn} size="large" color="primary" onClick={saveList}>SAVE LIST</Button>
+  </ThemeProvider> */}
+       
+       </Container>
 
     );
 
