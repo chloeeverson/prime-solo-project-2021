@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector, useDispatch} from 'react-redux';
-import {Typography, createMuiTheme, ThemeProvider} from '@material-ui/core';
+import {Typography, createMuiTheme, ThemeProvider, CardContent, Container, Card, Grid, makeStyles} from '@material-ui/core';
 import moment from 'moment';
 import { useHistory } from 'react-router-dom';
 
@@ -14,6 +14,16 @@ const theme = createMuiTheme({
   }
 })
 
+const useStyles = makeStyles({
+    list: {
+      marginTop: 40,
+    },
+    listItem: {
+
+    }
+
+})
+
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
@@ -21,6 +31,7 @@ function UserPage() {
   console.log(list);
   const dispatch = useDispatch();
   const history = useHistory();
+  const classes = useStyles();
 
   // useEffect(() => {
   //   dispatch({type: 'FETCH_LIST'})
@@ -39,15 +50,26 @@ function UserPage() {
     //   <p>Your ID is: {user.id}</p>
       // <LogOutButton className="btn" />
     // </div>
-    
+    <Container>
 <ThemeProvider theme={theme}>
     <Typography variant="h3" align="center" color="primary">SAVED LISTS</Typography>
-    <ul>
+    <Grid align="center" className={classes.list} container spacing={8}>
         {list.map((trip) => 
-          <li onClick={() => handleList(trip)} key={trip.id}>{trip.location} {moment(trip.start_date).format('LL')}</li>  
-        )}
-      </ul>
+          <Grid item lg={6} med={3} xs={12} onClick={() => handleList(trip)} key={trip.id}>
+            <Card className={classes.listItem}>
+              <CardContent>
+                <Typography variant="h5">
+                {trip.location}
+        </Typography>
+        <Typography color="textSecondary">
+        {moment(trip.start_date).format('LL')}</Typography>
+        <Typography color="textSecondary">
+        {trip.days} days</Typography>
+        </CardContent></Card>  
+        </Grid>)}
+      </Grid>
     </ThemeProvider>
+    </Container>
     );
 }
 
