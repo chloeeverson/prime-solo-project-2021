@@ -41,6 +41,7 @@ function UserPage() {
     console.log('clicked on list' , trip.location)
     // dispatch({type: 'SET_SAVED_LIST', payload: trip})
     history.push(`/savedlist/${trip.id}`)
+
   }
 
 
@@ -68,6 +69,10 @@ function UserPage() {
         </CardContent></Card>  
         </Grid>)}
       </Grid>
+
+//           <li onClick={() => handleList(trip)} key={trip.id}>{trip.location} {moment(trip.start_date).format('LL')}</li>  
+//         )}
+//       </ul>
     </ThemeProvider>
     </Container>
     );
