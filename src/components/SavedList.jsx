@@ -1,7 +1,7 @@
-import { Typography, Grid, TextField, makeStyles, Button, Container , createMuiTheme, ThemeProvider} from '@material-ui/core';
+import { Typography, Grid, TextField, makeStyles, Button, Container, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
-import {useHistory, useParams} from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 
 import prompts from '../redux/reducers/prompts.reducer';
 import moment from 'moment';
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     },
     input: {
         marginTop: 30,
-       
+
     },
     addBtn: {
         marginTop: 5,
@@ -34,7 +34,7 @@ const useStyles = makeStyles({
         width: '15ch',
     },
     saveBtn: {
-      marginTop: 20,
+        marginTop: 20,
     }
 })
 const theme = createMuiTheme({
@@ -43,129 +43,142 @@ const theme = createMuiTheme({
             main: '#F49D0C'
         }
     }
-  })
+})
 
 
 
 function SavedList() {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const {id} = useParams();
+    const { id } = useParams();
     const history = useHistory();
     const [editMode, setEditMode] = useState(false);
+    const [editItem, setEditItem] = useState(false);
 
     // const [editTitle, setEditTitle] = useState(false);
     // const [editDate, setEditDate] = useState(false);
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
+    const [amount, setAmount] = useState('');
+    const [name, setName] = useState('');
 
     const trip = useSelector(store => store.savedList);
     console.log(trip)
     const items = useSelector(store => store.items);
 
-//     console.log('current list:', {list});
-//     console.log('stored items:' , {items});
-    
+    //     console.log('current list:', {list});
+    //     console.log('stored items:' , {items});
 
-//     const [name, setName] = useState('');
-//     const [amount, setAmount] = useState(1);
+
+    //     const [name, setName] = useState('');
+    //     const [amount, setAmount] = useState(1);
 
     const [checked, setChecked] = useState([0]);
 
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+    const handleToggle = (value) => () => {
+        const currentIndex = checked.indexOf(value);
+        const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
+        if (currentIndex === -1) {
+            newChecked.push(value);
+        } else {
+            newChecked.splice(currentIndex, 1);
+        }
+
+        setChecked(newChecked);
+    };
+
+    //     // useEffect(()=> {
+    //     //     dispatch({type: 'FETCH_ITEMS'})
+    //     // }, []);
+
+
+    //     function addItem() {
+    //       console.log({items});
+    //         // console.log('adding', {amount}, {name});
+    //         // dispatch(
+    //         // {type: 'ADD_ITEM', payload:{
+    //         //     name: name, 
+    //         //     amount: amount,
+    //         // }})
+    //         //    setName('');
+    //         // setAmount(1);
+    //         dispatch({type: 'STORE_ITEM', payload:{
+    //             name: name, 
+    //             amount: amount,
+    //         }})
+    //         setName('');
+    //         setAmount(1);
+    //     }
+
+    //     function saveList(){
+    //         console.log('saving list', list.location, list.start_date)
+    //         console.log('adding', {items});
+    //         dispatch({type: 'ADD_LIST', payload:{
+    //             location: list.location,
+    //             start_date: list.start_date,
+    //             days: list.days,
+    //             items: items,
+    //         }});
+    //         // {type: 'ADD_ITEM', payload:{
+    //         //     name: name, 
+    //         //     amount: amount,
+    //         // }})
+    //         // console.log('adding', {amount}, {name});
+    //         // dispatch({type: 'ADD_ITEM', payload:{
+    //         //     name: name, 
+    //         //     amount: amount,
+    //         // }})
+    //         dispatch({type: 'RESET_ITEMS'});
+    //         history.push('/user');
+
+    //     }
+
+    useEffect(() => {
+        console.log('in useEffect param:', id)
+        dispatch({ type: 'FETCH_SAVED_LIST', payload: id })
+        dispatch({ type: 'FETCH_ITEMS', payload: id })
+    }, []);
+
+    function handleEdit() {
+        console.log('in handleEdit');
+        // Turn on edit mode
+        setEditMode(true);
+
+        // Set values in state from our list reducer
+        setTitle(trip.location);
+        setDate(trip.start_date);
+
     }
+    function handleEditItem(value) {
+        console.log('in handleEditItem for item' , value);
+        // Turn on edit mode
+        setEditItem(true);
 
-    setChecked(newChecked);
-  };
+        // Set values in state from our list reducer
+        setAmount(value.amount);
+        setDate(value.name);
 
-//     // useEffect(()=> {
-//     //     dispatch({type: 'FETCH_ITEMS'})
-//     // }, []);
-    
-
-//     function addItem() {
-//       console.log({items});
-//         // console.log('adding', {amount}, {name});
-//         // dispatch(
-//         // {type: 'ADD_ITEM', payload:{
-//         //     name: name, 
-//         //     amount: amount,
-//         // }})
-//         //    setName('');
-//         // setAmount(1);
-//         dispatch({type: 'STORE_ITEM', payload:{
-//             name: name, 
-//             amount: amount,
-//         }})
-//         setName('');
-//         setAmount(1);
-//     }
-
-//     function saveList(){
-//         console.log('saving list', list.location, list.start_date)
-//         console.log('adding', {items});
-//         dispatch({type: 'ADD_LIST', payload:{
-//             location: list.location,
-//             start_date: list.start_date,
-//             days: list.days,
-//             items: items,
-//         }});
-//         // {type: 'ADD_ITEM', payload:{
-//         //     name: name, 
-//         //     amount: amount,
-//         // }})
-//         // console.log('adding', {amount}, {name});
-//         // dispatch({type: 'ADD_ITEM', payload:{
-//         //     name: name, 
-//         //     amount: amount,
-//         // }})
-//         dispatch({type: 'RESET_ITEMS'});
-//         history.push('/user');
-
-//     }
-
-useEffect(() => {
-    console.log('in useEffect param:', id)
-    dispatch({type: 'FETCH_SAVED_LIST' , payload: id})
-    dispatch({type: 'FETCH_ITEMS' , payload: id})
-  }, []);
-    
-  function handleEdit(){
-    console.log('in handleEdit');
-// Turn on edit mode
-setEditMode(true);
-
-// Set values in state from our list reducer
-setTitle( trip.location);
-setDate( trip.start_date );
-
-}
+    }
+    // () => dispatch({ type: 'EDIT_ITEM', payload: { item: value.id, list: id } })
 
 
-  
-//     function handleTitleEdit(){
-//         console.log('in handleTitleEdit');
-// // Turn on edit mode
-// setEditTitle(true);
+    //     function handleTitleEdit(){
+    //         console.log('in handleTitleEdit');
+    // // Turn on edit mode
+    // setEditTitle(true);
 
-// // Set values in state from our book reducer
-// setTitle( trip.location);
+    // // Set values in state from our book reducer
+    // setTitle( trip.location);
 
-// function handleDateEdit(){
-//     setEditDate(true);
-//     setDate( trip.start_date );
+    // function handleDateEdit(){
+    //     setEditDate(true);
+    //     setDate( trip.start_date );
 
-// }
+    // }
 
-//     }
-    function handleSave(){
+    //     }
+    function handleSave() {
         console.log('in handleSave');
         const updatedList = {
             id: trip.id,
@@ -173,55 +186,66 @@ setDate( trip.start_date );
             start_date: date,
         }
         console.log('Updated trip info:', updatedList);
-        dispatch({type: 'UPDATE_LIST' , payload: updatedList})
+        dispatch({ type: 'UPDATE_LIST', payload: updatedList })
         setEditMode(false)
         // history.push('/user')
     }
-    
+
+    function handleItemSave(){
+        const updatedItem = {
+            id: items.id,
+            name: name,
+            amount: amount,
+        }
+        console.log('updated item info:', updatedItem);
+        dispatch({ type: 'UPDATE_ITEM', payload: updatedItem })
+    }
 
 
 
-    return ( 
+
+
+    return (
         <Container>
-            
-           
-            
-                {trip && trip.location && editMode ?
-                 <Grid align="center" >
-                {/* <Grid spacing={1} alignItems="flex-end" align="center"> */}
-                <Grid item>
-                <TextField type="text" align="center" color="primary" variant="standard" value={title} 
-                onChange={(event) => setTitle(event.target.value) } /></Grid>
-                <Grid item><SaveIcon onClick={handleSave} /></Grid>
-                </Grid>
-            :
-            <Grid align="center">
-                <Grid item>
-            <Typography variant="h3" align="center" color="primary" >{trip.location}</Typography></Grid>
-            <Grid item><EditIcon onClick={handleEdit} /></Grid></Grid>}
 
-          
-                {trip && trip.start_date && editMode ?
-                  <Grid align="center">
-                  <Grid item>
-                <TextField variant="standard" align="center" type="date" color="primary" value={date} 
-                onChange={(event) => setDate(event.target.value) } />
-                </Grid>
-                <Grid item>
-                <SaveIcon onClick={handleSave} /> 
-                </Grid>
+
+
+            {trip && trip.location && editMode ?
+                <Grid align="center" >
+                    {/* <Grid spacing={1} alignItems="flex-end" align="center"> */}
+                    <Grid item>
+                        <TextField type="text" align="center" color="primary" variant="standard" value={title}
+                            onChange={(event) => setTitle(event.target.value)} /></Grid>
+                    <Grid item><SaveIcon onClick={handleSave} /></Grid>
                 </Grid>
                 :
                 <Grid align="center">
-                <Grid item>
-                <Typography variant="subtitle1" align="center" color="primary" >{moment(trip.start_date).format('LL')}</Typography>
+                    <Grid item>
+                        <Typography variant="h3" align="center" color="primary" >{trip.location}</Typography></Grid>
+                    <Grid item><EditIcon onClick={handleEdit} /></Grid></Grid>}
+
+
+            {trip && trip.start_date && editMode ?
+                <Grid align="center">
+                    <Grid item>
+                        <TextField variant="standard" align="center" type="date" color="primary" value={date}
+                            onChange={(event) => setDate(event.target.value)} />
+                    </Grid>
+                    <Grid item>
+                        <SaveIcon onClick={handleSave} />
+                    </Grid>
                 </Grid>
-                <Grid item>
-                <EditIcon onClick={handleEdit} />
-                </Grid>
+                :
+                <Grid align="center">
+                    <Grid item>
+                        <Typography variant="subtitle1" align="center" color="primary" >{moment(trip.start_date).format('LL')}</Typography>
+                    </Grid>
+                    <Grid item>
+                        <EditIcon onClick={handleEdit} />
+                    </Grid>
                 </Grid>}
-                
-                {/* <div className={classes.input}>
+
+            {/* <div className={classes.input}>
                   <TextField className={classes.numberInput}  
  
                         id="standard-number"
@@ -241,46 +265,46 @@ setDate( trip.start_date );
                    <Button variant="contained" className={classes.addBtn} size="medium" color="secondary" onClick={addItem}>Add Item</Button>
                     
                  </div> */}
-                 <ul>
-                 <List className={classes.root}> 
-       {items.map((value) => {
-        const labelId = `checkbox-list-label-${value}`;
-        return (
-            <ListItem key={value.id} role={undefined} dense button onClick={handleToggle(value)}>
-              <ListItemIcon>
-                <Checkbox
-                  edge="start"
-                  checked={checked.indexOf(value) !== -1}
-                  tabIndex={-1}
-                  disableRipple
-                  inputProps={{ 'aria-labelledby': labelId }}
-                  color="default"
-                />
-              </ListItemIcon>
-              <ListItemText id={labelId} primary={`${value.amount} ${value.name}`} />
-              <ListItemSecondaryAction>
-              <IconButton onClick={()=> dispatch({type:'EDIT_ITEM', payload: value.id})} edge="end" aria-label="edit">
-              <EditIcon />
-              </IconButton>
-                <IconButton onClick={()=> dispatch({type:'DELETE_ITEM', payload: {item: value.id, list: id }})} edge="end" aria-label="delete">
-              
-                  <DeleteIcon />
-                  
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem> 
-           );
-        })}
-      </List>
-     {/* {items.map((item) => 
+            <ul>
+                <List className={classes.root}>
+                    {items.map((value) => {
+                        const labelId = `checkbox-list-label-${value}`;
+                        return (
+                            <ListItem key={value.id} role={undefined} dense button onClick={handleToggle(value)}>
+                                <ListItemIcon>
+                                    <Checkbox
+                                        edge="start"
+                                        checked={checked.indexOf(value) !== -1}
+                                        tabIndex={-1}
+                                        disableRipple
+                                        inputProps={{ 'aria-labelledby': labelId }}
+                                        color="default"
+                                    />
+                                </ListItemIcon>
+                                <ListItemText id={labelId} primary={`${value.amount} ${value.name}`} />
+                                <ListItemSecondaryAction>
+                                    <IconButton onClick={() => handleEditItem(value)} edge="end" aria-label="edit">
+                                        <EditIcon />
+                                    </IconButton>
+                                    <IconButton onClick={() => dispatch({ type: 'DELETE_ITEM', payload: { item: value.id, list: id } })} edge="end" aria-label="delete">
+
+                                        <DeleteIcon />
+
+                                    </IconButton>
+                                </ListItemSecondaryAction>
+                            </ListItem>
+                        );
+                    })}
+                </List>
+                {/* {items.map((item) => 
     <li key={item.id}>{item.amount} {item.name}</li>  
     )} */}
-  </ul>  
-  {/* <ThemeProvider theme={theme}>
+            </ul>
+            {/* <ThemeProvider theme={theme}>
   <Button variant="contained" className={classes.saveBtn} size="large" color="primary" onClick={saveList}>SAVE LIST</Button>
   </ThemeProvider> */}
-       
-       </Container>
+
+        </Container>
 
     );
 
