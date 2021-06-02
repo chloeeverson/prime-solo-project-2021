@@ -27,9 +27,22 @@ function* fetchList(){
     }
   }
 
+  function* editList(action) {
+    console.log('In edit saga', action.payload);
+    try {
+        yield axios.put(`/list/${action.payload.id}`, action.payload);
+        yield put({ type: 'FETCH_LIST' })
+        yield put({type: 'SET_SAVED_LIST', payload: action.payload})
+    } catch (error) {
+        alert(`Sorry. things are not working at the moment. Try again later`)
+        console.log('error editing list', error);
+    }
+}
+
   function* listSaga() {
     yield takeLatest('ADD_LIST', addList);
     yield takeLatest('FETCH_LIST', fetchList);
+    yield takeLatest('UPDATE_LIST', editList);
     
 }
 export default listSaga;

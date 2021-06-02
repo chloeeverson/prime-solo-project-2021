@@ -4,6 +4,7 @@ import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
 import itemSaga from './item.saga';
 import listSaga from './list.saga';
+import savedListSaga from './savedList.saga';
 
 
 // rootSaga is the primary saga.
@@ -20,5 +21,6 @@ export default function* rootSaga() {
     userSaga(),
     itemSaga(),
     listSaga(),
+    savedListSaga(),
   ]);
 }
