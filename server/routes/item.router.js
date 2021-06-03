@@ -52,14 +52,14 @@ router.delete('/:id', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  console.log('Checking put, id=', req.params.id, 'body=', req.body);
+  console.log('Checking put, body=', req.body);
   const queryText = `UPDATE item SET amount=$1, name=$2 WHERE id = $3;`;
-  pool.query(queryText, [req.body.location, req.body.start_date, req.params.id])
+  pool.query(queryText, [req.body.amount, req.body.name, req.params.id])
   .then(result => {
     res.sendStatus(201);
   })
   .catch(error => {
-    console.log(`Error updating list`, error);
+    console.log(`Error updating item`, error);
     res.sendStatus(500);
   });
 });

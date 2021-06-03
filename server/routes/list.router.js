@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
   });
 });
 
-// Get all lists
+// Get saved list
 router.get('/:id', (req, res) => {
     console.log(req.user.id);
     

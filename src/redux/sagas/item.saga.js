@@ -44,12 +44,12 @@ function* fetchItems(action){
 function* editItem(action) {
     console.log('In edit item saga', action.payload);
     try {
-        yield axios.put(`/item/${action.payload.item}`);
-        yield put({ type: 'FETCH_ITEMS' })
-        yield put({type: 'SET_SAVED_LIST', payload: action.payload})
+        yield axios.put(`/items/${action.payload.id}`, action.payload);
+        yield put({ type: 'FETCH_ITEMS' , payload: action.payload.list_id})
+        // yield put({type: 'SET_SAVED_LIST', payload: action.payload})
     } catch (error) {
         alert(`Sorry. things are not working at the moment. Try again later`)
-        console.log('error editing list', error);
+        console.log('error editing item', error);
     }
 }
 
@@ -62,7 +62,7 @@ function* editItem(action) {
         // yield put({ type: 'SET_ITEMS', payload: action.payload});
 
     } catch (error) {
-        console.log('error in Delete', error);
+        console.log('error in Delete item saga', error);
     }
 }
 
@@ -71,6 +71,7 @@ function* itemSaga() {
     yield takeLatest('ADD_ITEM', addItem)
     yield takeLatest('FETCH_ITEMS', fetchItems)
     yield takeLatest('DELETE_ITEM', deleteItem);
+    yield takeLatest('UPDATE_ITEM', editItem)
     // yield takeLatest('FETCH_ALL_ITEMS', fetchAllItems)
 }
 export default itemSaga;
