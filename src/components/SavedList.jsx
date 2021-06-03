@@ -252,6 +252,10 @@ function SavedList() {
                     <Grid item>
                         <EditIcon onClick={handleEdit} /></Grid></Grid>}
 
+            
+
+
+
 {/* 
             {trip && trip.start_date && editMode ?
                 <Grid align="center">
