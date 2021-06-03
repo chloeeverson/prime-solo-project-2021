@@ -36,8 +36,8 @@ router.get('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
     console.log('Checking put, id=', req.params.id, 'body=', req.body);
-    const queryText = `UPDATE list SET location=$1, start_date=$2 WHERE id = $3;`;
-    pool.query(queryText, [req.body.location, req.body.start_date, req.params.id])
+    const queryText = `UPDATE list SET location=$1, start_date=$2, days=$3 WHERE id = $4;`;
+    pool.query(queryText, [req.body.location, req.body.start_date, req.body.days, req.params.id])
     .then(result => {
       res.sendStatus(201);
     })
