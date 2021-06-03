@@ -135,7 +135,7 @@ function SavedItem(value){
                         <IconButton onClick={() => handleEditItem(value)} edge="end" aria-label="edit">
                                 <EditIcon />
                             </IconButton>
-                            <IconButton onClick={() => dispatch({ type: 'DELETE_ITEM', payload: { item: value.id, list_id: id } })} edge="end" aria-label="delete">
+                            <IconButton onClick={() => dispatch({ type: 'DELETE_ITEM', payload: { item: value.id, list: id } })} edge="end" aria-label="delete">
 
                                 <DeleteIcon />
 

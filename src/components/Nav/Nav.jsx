@@ -81,7 +81,7 @@ function Nav() {
   return (
 
     <div className="nav">
-      <Link 
+      <Link style={{color: 'black'}}
         // className="navLink" 
         to={loginLinkData.path}>
         {loginLinkData.text}
@@ -93,7 +93,7 @@ function Nav() {
         <Grid className={classes.logo}
         >
           <Grid item>
-            <CardTravelIcon className={classes.suitcase} color="secondary" align="center" size='large' />
+            <CardTravelIcon className={classes.suitcase} style={{color: 'black'}} align="center" size='large' />
           </Grid>
           <Grid item>
 
