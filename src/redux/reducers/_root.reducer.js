@@ -6,6 +6,8 @@ import list from './list.reducer';
 import items from './item.reducer';
 import currentList from './currentList.reducer'
 import storeItem from './storeItem.reducer'
+import savedList from './savedList.reducer'
+import savedItems from './savedItems.reducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -20,6 +22,8 @@ const rootReducer = combineReducers({
   items,
   currentList,
   storeItem,
+  savedList,
+  savedItems,
 });
 
 export default rootReducer;

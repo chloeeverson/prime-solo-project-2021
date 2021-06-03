@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Prompt from '../Prompt';
 import PackingList from '../PackingList'
+import SavedList from '../SavedList'
 
 import './App.css';
 
@@ -30,6 +31,10 @@ function App() {
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch({type: 'FETCH_LIST'})
+  },[]);
 
   return (
     <Router>
@@ -80,6 +85,13 @@ function App() {
             path="/list"
           >
             <PackingList />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows SavedlistPage else shows LoginPage
+            exact
+            path="/savedlist/:id"
+          >
+            <SavedList />
           </ProtectedRoute>
 
           {/* When a value is supplied for the authRedirect prop the user will
