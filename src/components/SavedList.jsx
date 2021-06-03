@@ -15,6 +15,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
+import ListItem from './ListItem'
 
 const useStyles = makeStyles({
     numberInput: {
@@ -35,6 +36,9 @@ const useStyles = makeStyles({
     },
     saveBtn: {
         marginTop: 20,
+    },
+    editAmount: {
+        width: '5ch',
     }
 })
 const theme = createMuiTheme({
@@ -191,14 +195,15 @@ function SavedList() {
         // history.push('/user')
     }
 
-    function handleItemSave(){
+    function handleItemSave(value){
         const updatedItem = {
-            id: items.id,
+            id: value.id,
             name: name,
             amount: amount,
         }
         console.log('updated item info:', updatedItem);
         dispatch({ type: 'UPDATE_ITEM', payload: updatedItem })
+        setEditItem(false)
     }
 
 
@@ -271,6 +276,28 @@ function SavedList() {
                         const labelId = `checkbox-list-label-${value}`;
                         return (
                             <ListItem key={value.id} role={undefined} dense button onClick={handleToggle(value)}>
+                                
+                                
+                                {editItem ?
+                                <>
+                                    <TextField className={classes.editAmount} type="text" align="center" color="primary" variant="standard" value={amount}
+                                    onChange={(event) => setAmount(event.target.value)} />
+                                    <TextField type="text" align="center" color="primary" variant="standard" value={name}
+                                    onChange={(event) => setName(event.target.value)} />
+                                    <ListItemSecondaryAction>
+
+                                    <IconButton onClick={() => handleItemSave(value)} edge="end" aria-label="edit">
+                                        <SaveIcon />
+                                    </IconButton>
+                                
+                                    </ListItemSecondaryAction></>
+
+                                :
+
+                                
+
+
+                                <>
                                 <ListItemIcon>
                                     <Checkbox
                                         edge="start"
@@ -283,7 +310,8 @@ function SavedList() {
                                 </ListItemIcon>
                                 <ListItemText id={labelId} primary={`${value.amount} ${value.name}`} />
                                 <ListItemSecondaryAction>
-                                    <IconButton onClick={() => handleEditItem(value)} edge="end" aria-label="edit">
+
+                                <IconButton onClick={() => handleEditItem(value)} edge="end" aria-label="edit">
                                         <EditIcon />
                                     </IconButton>
                                     <IconButton onClick={() => dispatch({ type: 'DELETE_ITEM', payload: { item: value.id, list: id } })} edge="end" aria-label="delete">
@@ -292,6 +320,7 @@ function SavedList() {
 
                                     </IconButton>
                                 </ListItemSecondaryAction>
+                                </> }
                             </ListItem>
                         );
                     })}
