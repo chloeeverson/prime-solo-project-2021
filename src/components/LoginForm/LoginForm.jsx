@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom'
 
 import {Button, Grid, Container, Typography, TextField, Card, CardHeader, CardContent, makeStyles, createMuiTheme, ThemeProvider} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
@@ -39,6 +40,7 @@ function LoginForm() {
   const [password, setPassword] = useState('');
   const errors = useSelector(store => store.errors);
   const dispatch = useDispatch();
+  const history = useHistory();
 
  
 
@@ -53,6 +55,7 @@ function LoginForm() {
           password: password,
         },
       });
+      history.push('/user')
     } else {
       dispatch({ type: 'LOGIN_INPUT_ERROR' });
     }
