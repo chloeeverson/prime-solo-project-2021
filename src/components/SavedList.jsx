@@ -39,6 +39,9 @@ const useStyles = makeStyles({
     },
     editAmount: {
         width: '5ch',
+    },
+    daysAmount: {
+        width: '5ch',
     }
 })
 const theme = createMuiTheme({
@@ -63,6 +66,7 @@ function SavedList() {
     // const [editDate, setEditDate] = useState(false);
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
+    const [days, setDays] = useState('');
     // const [amount, setAmount] = useState('');
     // const [name, setName] = useState('');
 
@@ -152,6 +156,7 @@ function SavedList() {
         // Set values in state from our list reducer
         setTitle(trip.location);
         setDate(trip.start_date);
+        setDays(trip.days);
 
     }
     // function handleEditItem(value) {
@@ -188,6 +193,7 @@ function SavedList() {
             id: trip.id,
             location: title,
             start_date: date,
+            days: days,
         }
         console.log('Updated trip info:', updatedList);
         dispatch({ type: 'UPDATE_LIST', payload: updatedList })
@@ -221,15 +227,32 @@ function SavedList() {
                     <Grid item>
                         <TextField type="text" align="center" color="primary" variant="standard" value={title}
                             onChange={(event) => setTitle(event.target.value)} /></Grid>
+                             <Grid item>
+                        <TextField variant="standard" align="center" type="date" color="primary" value={date}
+                            onChange={(event) => setDate(event.target.value)} />
+                    </Grid>
+                    <Grid item>
+                        <TextField className={classes.daysAmount} variant="standard" align="center" type="number" color="primary" value={days}
+                            onChange={(event) => setDays(event.target.value)} />
+                        <Typography variant="subtitle1" align="center" color="primary" >days</Typography>
+                    </Grid>
+
                     <Grid item><SaveIcon onClick={handleSave} /></Grid>
                 </Grid>
                 :
                 <Grid align="center">
                     <Grid item>
                         <Typography variant="h3" align="center" color="primary" >{trip.location}</Typography></Grid>
-                    <Grid item><EditIcon onClick={handleEdit} /></Grid></Grid>}
+                        <Grid item>
+                        <Typography variant="subtitle1" align="center" color="primary" >{moment(trip.start_date).format('LL')}</Typography>
+                    </Grid>
+                    <Grid item>
+                        <Typography variant="subtitle1" align="center" color="primary" >{trip.days} days</Typography>
+                    </Grid>
+                    <Grid item>
+                        <EditIcon onClick={handleEdit} /></Grid></Grid>}
 
-
+{/* 
             {trip && trip.start_date && editMode ?
                 <Grid align="center">
                     <Grid item>
@@ -248,7 +271,7 @@ function SavedList() {
                     <Grid item>
                         <EditIcon onClick={handleEdit} />
                     </Grid>
-                </Grid>}
+                </Grid>} */}
 
             {/* <div className={classes.input}>
                   <TextField className={classes.numberInput}  

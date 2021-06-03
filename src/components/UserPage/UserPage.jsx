@@ -33,9 +33,9 @@ function UserPage() {
   const history = useHistory();
   const classes = useStyles();
 
-  // useEffect(() => {
-  //   dispatch({type: 'FETCH_LIST'})
-  // },[]);
+  useEffect(() => {
+    dispatch({type: 'FETCH_LIST'})
+  },[]);
   
   function handleList(trip){
     console.log('clicked on list' , trip.location)
