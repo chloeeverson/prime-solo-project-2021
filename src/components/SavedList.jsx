@@ -67,8 +67,8 @@ function SavedList() {
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
     const [days, setDays] = useState('');
-    // const [amount, setAmount] = useState('');
-    // const [name, setName] = useState('');
+    const [amount, setAmount] = useState('');
+    const [name, setName] = useState('');
 
     const trip = useSelector(store => store.savedList);
     console.log('trip' , trip , 'trip id:', id)
@@ -101,23 +101,24 @@ function SavedList() {
     //     // }, []);
 
 
-    //     function addItem() {
-    //       console.log({items});
-    //         // console.log('adding', {amount}, {name});
-    //         // dispatch(
-    //         // {type: 'ADD_ITEM', payload:{
-    //         //     name: name, 
-    //         //     amount: amount,
-    //         // }})
-    //         //    setName('');
-    //         // setAmount(1);
-    //         dispatch({type: 'STORE_ITEM', payload:{
-    //             name: name, 
-    //             amount: amount,
-    //         }})
-    //         setName('');
-    //         setAmount(1);
-    //     }
+        function addItem() {
+        //   console.log({items});
+            console.log('adding', {amount}, {name});
+            // dispatch(
+            // {type: 'ADD_ITEM', payload:{
+            //     name: name, 
+            //     amount: amount,
+            // }})
+            //    setName('');
+            // setAmount(1);
+            dispatch({type: 'ADD_ITEM', payload:{
+                name: name, 
+                amount: amount,
+                list_id: id,
+            }})
+            setName('');
+            setAmount(1);
+        }
 
     //     function saveList(){
     //         console.log('saving list', list.location, list.start_date)
@@ -277,7 +278,7 @@ function SavedList() {
                     </Grid>
                 </Grid>} */}
 
-            {/* <div className={classes.input}>
+            <div className={classes.input}>
                   <TextField className={classes.numberInput}  
  
                         id="standard-number"
@@ -296,7 +297,10 @@ function SavedList() {
                     
                    <Button variant="contained" className={classes.addBtn} size="medium" color="secondary" onClick={addItem}>Add Item</Button>
                     
-                 </div> */}
+                 </div>
+
+
+                 
             {/* <ul> */}
                 <List className={classes.root}>
                     {items.map((value) => {
