@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
 
-  margin: 0 0 30px;
+  margin: 0 0 40px;
   background-color: #2364AA;
   overflow: hidden;
   padding: 20px 20px 20px 20px;
@@ -24,12 +24,14 @@
 
 .navLink {
   display: inline-block;
-  color: black;
+  color: #F49D0C;
   background-color: #2364AA;
   text-align: right;
   padding: 24px 10px;
   text-decoration: none;
   font-size: 15px;
+  margin-top: 3px;
+  margin-right: 5px;
   
 
   /* these last two make the logout button in
@@ -39,10 +41,12 @@
   outline: 0;
 }
 
-.navLink:hover {
-  background-color: #008183;
-}
+/* .navLink:hover {
+  background-color: #2c387e;
+} */
 
 html {
   background-color: #3DA5D9;
 }
+
+/* #2364AA; */

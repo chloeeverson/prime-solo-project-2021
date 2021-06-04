@@ -38,10 +38,14 @@ const useStyles = makeStyles({
 })
 const theme = createMuiTheme({
     palette: {
-        primary: {
+        secondary: {
             main: '#F49D0C'
-        }
+        },
+        primary: {
+          main: '#FFFFFF'
+      },
     }
+
   })
 
 
@@ -131,6 +135,8 @@ function PackingList() {
             <Grid align="center">
                 <Typography variant="h3" align="center" color="primary">{list.location}</Typography>
                 <Typography variant="subtitle1" align="center" color="primary">{moment(list.start_date).format('LL')}</Typography>
+                <Typography variant="subtitle1" align="center" color="primary" >{list.days} days</Typography>
+                
                 <div className={classes.input}>
                     <TextField autoComplete="off" className={classes.numberInput}
 
@@ -156,7 +162,7 @@ function PackingList() {
       {items.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
         return (
-            <ListItem key={value.id} role={undefined} dense button onClick={handleToggle(value)}>
+            <ListItem key={value.name} role={undefined} dense button onClick={handleToggle(value)}>
               <ListItemIcon>
                 <Checkbox
                   edge="start"
