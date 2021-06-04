@@ -157,7 +157,7 @@ function SavedList() {
 
         // Set values in state from our list reducer
         setTitle(trip.location);
-        setDate(trip.start_date);
+        setDate(trip.start_date.slice(0,10));
         setDays(trip.days);
 
     }
