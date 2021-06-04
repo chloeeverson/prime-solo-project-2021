@@ -56,6 +56,7 @@ const useStyles = makeStyles({
     deleteBtn: {
         padding: 10,
         marginTop: 40,
+        marginBottom: 40,
         // paddingLeft: 10,
         // paddingRight: 10,
     },

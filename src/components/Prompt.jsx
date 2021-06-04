@@ -1,4 +1,4 @@
-import { Typography, TextField, Grid, makeStyles, Button , withStyles} from '@material-ui/core';
+import { Typography, TextField, Grid, makeStyles, Button , withStyles, createMuiTheme, ThemeProvider} from '@material-ui/core';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import {KeyboardDatePicker} from '@material-ui/pickers';
 
@@ -29,6 +29,16 @@ const useStyles = makeStyles({
     },
 })
 
+
+const theme = createMuiTheme({
+    // palette: {
+   
+    //   primary: {
+    //     main: '#ff9800'
+    //   }
+    // }
+  })
+
 const CssTextField = withStyles({
     root: {
       '& label.Mui-focused': {
@@ -42,7 +52,7 @@ const CssTextField = withStyles({
           borderColor: 'black',
         },
         '&:hover fieldset': {
-          borderColor: 'yellow',
+          borderColor: '#cddc39',
         },
         '&.Mui-focused fieldset': {
           borderColor: 'primary',
@@ -85,7 +95,7 @@ function Prompt() {
         history.push('/list')
     }
     return (
-
+       
         <Grid align="center">
             <Grid item>
                 <Typography className={classes.title} lg={12} variant="h5">Tell me about your trip!</Typography>
@@ -112,7 +122,9 @@ function Prompt() {
                 <CssTextField inputProps={{min: 0, style: { textAlign: 'center' }}} className={classes.answer} type="number" variant="outlined"  required value={days}
             onChange={(event) => setDays(event.target.value)}/>
             </Grid>
+            <ThemeProvider theme={theme}>
             <Button variant="contained" className={classes.btn} size="large" color="primary" onClick={packingList} endIcon={<ArrowForwardIosIcon />}>Packing List</Button>
+            </ThemeProvider>
             {/* <KeyboardDatePicker
           disableToolbar
           variant="inline"

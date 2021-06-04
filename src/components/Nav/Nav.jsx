@@ -82,7 +82,7 @@ function Nav() {
   return (
 
     <div className="nav">
-      <Link style={{color: '#2c387e'}}
+      <Link style={{color: '#F49D0C', marginLeft: 5}}
         // className="navLink" 
         to={loginLinkData.path}>
         {loginLinkData.text}
@@ -120,8 +120,8 @@ function Nav() {
               Info Page
             </Link> */}
             <LogOutButton 
-            // className="navLink" 
-            className={classes.logout}
+            className="navLink" 
+            // className={classes.logout}
             />
           </>
         )}

@@ -19,7 +19,7 @@ const theme = createMuiTheme({
 
 const useStyles = makeStyles({
     list: {
-      marginTop: 20,
+      marginTop: 15,
     },
     listItem: {
 
