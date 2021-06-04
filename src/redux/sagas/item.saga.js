@@ -5,10 +5,10 @@ import axios from 'axios'
 function* addItem(action) {
     try {
         yield axios.post('/items', action.payload);
-        yield put({ type: 'FETCH_ITEMS' })
+        yield put({ type: 'FETCH_ITEMS', payload: action.payload.list_id })
     } catch (error) {
         alert(`Sorry. things are not working at the moment. Try again later`)
-        console.log('error adding item', error);
+        console.log('error adding item to saved list', error);
     }
 }
 

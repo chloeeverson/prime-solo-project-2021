@@ -55,8 +55,8 @@ function SavedItem(value){
     const { id } = useParams();
     console.log('value:',value.name , value.amount, 'list id:' , id )
 
-    const [amount, setAmount] = useState('');
-    const [name, setName] = useState('');
+    const [newAmount, setNewAmount] = useState('');
+    const [newName, setNewName] = useState('');
  
     const [editItem, setEditItem] = useState(false);
     const items = useSelector(store => store.items);
@@ -79,8 +79,8 @@ function SavedItem(value){
     function handleItemSave(value){
         const updatedItem = {
             id: value.id,
-            name: name,
-            amount: amount,
+            name: newName,
+            amount: newAmount,
             list_id: id,
         }
         console.log('updated item info:', updatedItem);
@@ -93,18 +93,18 @@ function SavedItem(value){
         setEditItem(true);
 
         // Set values in state from our list reducer
-        setAmount(value.amount);
-        setName(value.name);
+        setNewAmount(value.amount);
+        setNewName(value.name);
 
     }
     return(
         <ListItem role={undefined} dense button onClick={handleToggle(value)} >
             {editItem ?
                         <>
-                            <TextField className={classes.editAmount} type="text" align="center" color="primary" variant="standard" value={amount}
-                            onChange={(event) => setAmount(event.target.value)} />
-                            <TextField type="text" align="center" color="primary" variant="standard" value={name}
-                            onChange={(event) => setName(event.target.value)} />
+                            <TextField autoComplete="off" className={classes.editAmount} type="text" align="center" color="primary" variant="standard" value={newAmount}
+                            onChange={(event) => setNewAmount(event.target.value)} />
+                            <TextField autoComplete="off" type="text" align="center" color="primary" variant="standard" value={newName}
+                            onChange={(event) => setNewName(event.target.value)} />
                             <ListItemSecondaryAction>
 
                             <IconButton onClick={() => handleItemSave(value)} edge="end" aria-label="edit">
