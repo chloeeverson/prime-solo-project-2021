@@ -337,6 +337,10 @@ function SavedList() {
                 <List className={classes.root}>
                     {items.map((value) => {
                         // const labelId = `checkbox-list-label-${value}`;
+                        if (value.complete === true ){
+                            console.log(value.name ,'is complete')
+                            // handleToggle(value);
+                        }
                         return (
                             <SavedItem key={value.id} id={value.id} name={value.name} amount={value.amount} />)})}
 

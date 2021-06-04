@@ -53,6 +53,18 @@ function* editItem(action) {
     }
 }
 
+function* completeItem(action) {
+    console.log('In complete item saga', action.payload);
+    try {
+        yield axios.put(`/items/complete/${action.payload.id}`, action.payload.id);
+        yield put({ type: 'FETCH_ITEMS' , payload: action.payload.list_id})
+        // yield put({type: 'SET_SAVED_LIST', payload: action.payload})
+    } catch (error) {
+        alert(`Sorry. things are not working at the moment. Try again later`)
+        console.log('error completing item', error);
+    }
+}
+
   function* deleteItem(action) {
     try{
         console.log('action payload', action.payload);
@@ -72,6 +84,7 @@ function* itemSaga() {
     yield takeLatest('FETCH_ITEMS', fetchItems)
     yield takeLatest('DELETE_ITEM', deleteItem);
     yield takeLatest('UPDATE_ITEM', editItem)
+    yield takeLatest('UPDATE_COMPLETE', completeItem)
     // yield takeLatest('FETCH_ALL_ITEMS', fetchAllItems)
 }
 export default itemSaga;

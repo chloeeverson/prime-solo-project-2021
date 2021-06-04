@@ -69,7 +69,7 @@ function Prompt() {
                 <Typography className={classes.prompt} lg={2} variant="subtitle1">Where are you going?</Typography>
             </Grid>
             <Grid item>
-                <TextField className={classes.prompt} variant="outlined"  required value={where}
+                <CssTextField className={classes.prompt} variant="outlined"  required value={where}
             onChange={(event) => setWhere(event.target.value)} />
             </Grid>
             <Grid item>
