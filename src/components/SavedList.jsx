@@ -25,6 +25,7 @@ const useStyles = makeStyles({
     },
     input: {
         marginTop: 30,
+        marginBottom: 20,
 
     },
     addBtn: {
@@ -67,7 +68,7 @@ function SavedList() {
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
     const [days, setDays] = useState('');
-    const [amount, setAmount] = useState('');
+    const [amount, setAmount] = useState(1);
     const [name, setName] = useState('');
 
     const trip = useSelector(store => store.savedList);
@@ -226,14 +227,14 @@ function SavedList() {
                 <Grid align="center" >
                     {/* <Grid spacing={1} alignItems="flex-end" align="center"> */}
                     <Grid item>
-                        <TextField type="text" align="center" color="primary" variant="standard" value={title}
+                        <TextField autoComplete="off" type="text" align="center" color="primary" variant="standard" value={title}
                             onChange={(event) => setTitle(event.target.value)} /></Grid>
                              <Grid item>
-                        <TextField variant="standard" align="center" type="date" color="primary" value={date}
+                        <TextField autoComplete="off" variant="standard" align="center" type="date" color="primary" value={date}
                             onChange={(event) => setDate(event.target.value)} />
                     </Grid>
                     <Grid item>
-                        <TextField className={classes.daysAmount} variant="standard" align="center" type="number" color="primary" value={days}
+                        <TextField autoComplete="off" className={classes.daysAmount} variant="standard" align="center" type="number" color="primary" value={days}
                             onChange={(event) => setDays(event.target.value)} />
                         <Typography variant="subtitle1" align="center" color="primary" >days</Typography>
                     </Grid>
@@ -277,8 +278,8 @@ function SavedList() {
                         <EditIcon onClick={handleEdit} />
                     </Grid>
                 </Grid>} */}
-
-            <div className={classes.input}>
+            <Grid align="center">
+            <Grid item className={classes.input}>
                   <TextField className={classes.numberInput}  
  
                         id="standard-number"
@@ -290,17 +291,18 @@ function SavedList() {
                       value={amount}
                        onChange={(event) => setAmount(event.target.value)}
                    />
-                 <TextField className={classes.itemInput} type="text" id="standard-number" label="Item" InputLabelProps={{ 
+                 <TextField className={classes.itemInput} autoComplete="off" type="text" id="standard-number" label="Item" InputLabelProps={{ 
                         shrink: true,
                     }} value={name}
                      onChange={(event) => setName(event.target.value)} />
                     
-                   <Button variant="contained" className={classes.addBtn} size="medium" color="secondary" onClick={addItem}>Add Item</Button>
+                   <Button variant="contained" autoComplete="off" className={classes.addBtn} size="medium" color="secondary" onClick={addItem}>Add Item</Button>
                     
-                 </div>
+                 </Grid>
+                 </Grid>
 
 
-                 
+
             {/* <ul> */}
                 <List className={classes.root}>
                     {items.map((value) => {

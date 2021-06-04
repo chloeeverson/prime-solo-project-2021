@@ -132,7 +132,7 @@ function PackingList() {
                 <Typography variant="h3" align="center" color="primary">{list.location}</Typography>
                 <Typography variant="subtitle1" align="center" color="primary">{moment(list.start_date).format('LL')}</Typography>
                 <div className={classes.input}>
-                    <TextField className={classes.numberInput}
+                    <TextField autoComplete="off" className={classes.numberInput}
 
                         id="standard-number"
                         label="Amount"
@@ -143,7 +143,7 @@ function PackingList() {
                         value={amount}
                         onChange={(event) => setAmount(event.target.value)}
                     />
-                    <TextField className={classes.itemInput} type="text" id="standard-number" label="Item" InputLabelProps={{
+                    <TextField autoComplete="off" className={classes.itemInput} type="text" id="standard-number" label="Item" InputLabelProps={{
                         shrink: true,
                     }} value={name}
                         onChange={(event) => setName(event.target.value)} />

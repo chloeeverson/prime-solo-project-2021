@@ -101,9 +101,9 @@ function SavedItem(value){
         <ListItem role={undefined} dense button onClick={handleToggle(value)} >
             {editItem ?
                         <>
-                            <TextField className={classes.editAmount} type="text" align="center" color="primary" variant="standard" value={newAmount}
+                            <TextField autoComplete="off" className={classes.editAmount} type="text" align="center" color="primary" variant="standard" value={newAmount}
                             onChange={(event) => setNewAmount(event.target.value)} />
-                            <TextField type="text" align="center" color="primary" variant="standard" value={newName}
+                            <TextField autoComplete="off" type="text" align="center" color="primary" variant="standard" value={newName}
                             onChange={(event) => setNewName(event.target.value)} />
                             <ListItemSecondaryAction>
 
