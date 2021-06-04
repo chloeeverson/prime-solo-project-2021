@@ -7,16 +7,19 @@ import { useHistory } from 'react-router-dom';
 
 
 const theme = createMuiTheme({
-  palette: {
-      primary: {
-          main: '#184473'
-      }
-  }
+  // palette: {
+  //     primary: {
+  //         main: '#F49D0C'
+  //     },
+  //     secondary: {
+  //       main: '#184473'
+  //   },
+  // }
 })
 
 const useStyles = makeStyles({
     list: {
-      marginTop: 40,
+      marginTop: 20,
     },
     listItem: {
 
@@ -56,14 +59,14 @@ function UserPage() {
     <Grid align="center" className={classes.list} container spacing={8}>
         {list.map((trip) => 
           <Grid item lg={6} med={3} xs={12} onClick={() => handleList(trip)} key={trip.id}>
-            <Card className={classes.listItem}>
+            <Card  style={{backgroundColor: '#cddc39'}} className={classes.listItem}>
               <CardContent>
-                <Typography variant="h5">
+                <Typography color="primary" variant="h5">
                 {trip.location}
         </Typography>
-        <Typography color="textSecondary">
+        <Typography color="primary">
         {moment(trip.start_date).format('LL')}</Typography>
-        <Typography color="textSecondary">
+        <Typography color="primary">
         {trip.days} days</Typography>
         </CardContent></Card>  
         </Grid>)}

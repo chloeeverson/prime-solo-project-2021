@@ -31,6 +31,7 @@ const useStyles = makeStyles({
     marginTop: -4,
   },
   logo: {
+    marginTop: 15,
     // alignItems: "center",
     // justifyContent: "center"
   },
@@ -38,7 +39,7 @@ const useStyles = makeStyles({
     alignItems: 'center'
   },
   suitcase: {
-    marginLeft: 25,
+    marginLeft: 20,
   }
 
 })
@@ -81,7 +82,7 @@ function Nav() {
   return (
 
     <div className="nav">
-      <Link style={{color: 'black'}}
+      <Link style={{color: '#2c387e'}}
         // className="navLink" 
         to={loginLinkData.path}>
         {loginLinkData.text}
@@ -93,11 +94,14 @@ function Nav() {
         <Grid className={classes.logo}
         >
           <Grid item>
-            <CardTravelIcon className={classes.suitcase} style={{color: 'black'}} align="center" size='large' />
+            <CardTravelIcon className={classes.suitcase} 
+            style={{color: '#2c387e', align: 'center'}} 
+            
+            align="center" fontSize='large' />
           </Grid>
           <Grid item>
 
-            <Typography className={classes.title} variant="h6" color="textSecondary" align="center">packMe</Typography>
+            <Typography className={classes.title} variant="h6" style={{color: '#2c387e', align: 'center'}} align="center">packMe</Typography>
             {/* <Grid item className={classes.titleHome}>
           <Typography align="center" variant="h1">SAVED LISTS</Typography>
           </Grid> */}
@@ -115,7 +119,10 @@ function Nav() {
             {/* <Link className="navLink" to="/info">
               Info Page
             </Link> */}
-            <LogOutButton className="navLink" />
+            <LogOutButton 
+            // className="navLink" 
+            className={classes.logout}
+            />
           </>
         )}
 

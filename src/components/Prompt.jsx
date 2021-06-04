@@ -1,4 +1,4 @@
-import { Typography, TextField, Grid, makeStyles, Button } from '@material-ui/core';
+import { Typography, TextField, Grid, makeStyles, Button , withStyles} from '@material-ui/core';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import {KeyboardDatePicker} from '@material-ui/pickers';
 
@@ -9,15 +9,19 @@ import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
     prompt: {
-        marginBottom: 30,
+        marginBottom: 15,
 
+    },
+    answer:{
+        marginBottom: 25,
+        textAlign: "center",
     },
     title: {
         marginTop: 50,
         marginBottom: 30,
     },
     btn: {
-        marginTop: 35,
+        marginTop: 25,
         paddingLeft: 30,
         paddingRight: 30,
         paddingTop: 20,
@@ -25,6 +29,27 @@ const useStyles = makeStyles({
     },
 })
 
+const CssTextField = withStyles({
+    root: {
+      '& label.Mui-focused': {
+        color: 'green',
+      },
+      '& .MuiInput-underline:after': {
+        borderBottomColor: 'green',
+      },
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: 'black',
+        },
+        '&:hover fieldset': {
+          borderColor: 'yellow',
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: 'primary',
+        },
+      },
+    },
+  })(TextField);
 
 function Prompt() {
     const classes = useStyles();
@@ -69,14 +94,14 @@ function Prompt() {
                 <Typography className={classes.prompt} lg={2} variant="subtitle1">Where are you going?</Typography>
             </Grid>
             <Grid item>
-                <TextField className={classes.prompt} variant="outlined"  required value={where}
+                <CssTextField inputProps={{style: { textAlign: 'center' }}} className={classes.answer} variant="outlined"  required value={where}
             onChange={(event) => setWhere(event.target.value)} />
             </Grid>
             <Grid item>
                 <Typography className={classes.prompt} lg={2} variant="subtitle1">Start date:</Typography>
             </Grid>
             <Grid item>
-                <TextField className={classes.prompt} type="date" variant="outlined" 
+                <CssTextField inputProps={{style: { textAlign: 'center' }}} className={classes.answer} type="date" variant="outlined" 
                 required value={when}
             onChange={(event) => setWhen(event.target.value)}/>
             </Grid>
@@ -84,7 +109,7 @@ function Prompt() {
                 <Typography className={classes.prompt} lg={2} variant="subtitle1">How many days?</Typography>
             </Grid>
             <Grid item>
-                <TextField className={classes.prompt} type="number" variant="outlined"  required value={days}
+                <CssTextField inputProps={{min: 0, style: { textAlign: 'center' }}} className={classes.answer} type="number" variant="outlined"  required value={days}
             onChange={(event) => setDays(event.target.value)}/>
             </Grid>
             <Button variant="contained" className={classes.btn} size="large" color="primary" onClick={packingList} endIcon={<ArrowForwardIosIcon />}>Packing List</Button>

@@ -326,7 +326,7 @@ function SavedList() {
                     }} value={name}
                      onChange={(event) => setName(event.target.value)} />
                     
-                   <Button variant="contained" autoComplete="off" className={classes.addBtn} size="medium" onClick={addItem}>Add Item</Button>
+                   <Button variant="contained" autoComplete="off" style={{backgroundColor: '#ff9800'}} className={classes.addBtn} size="medium" onClick={addItem}>Add Item</Button>
                     
                  </Grid>
                  </Grid>
@@ -350,8 +350,9 @@ function SavedList() {
 //   </ThemeProvider> */} 
 
         <Grid align="center">
-        <Button style={{backgroundColor: 'crimson'}} variant="contained" className={classes.deleteBtn} endIcon={<DeleteIcon fontSize="large" style={{color: 'black'}} className={classes.deleteIcon} />} onClick={handleClickOpen} />
-
+        <Button style={{backgroundColor: '#e91e63'}} variant="contained" className={classes.deleteBtn} endIcon={<DeleteIcon fontSize="large" style={{color: 'black'}} className={classes.deleteIcon} />} onClick={handleClickOpen} />
+        {/* #b22a00
+        #b23b47 */}
         <Dialog
         open={open}
         onClose={handleClose}
