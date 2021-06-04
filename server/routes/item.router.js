@@ -6,7 +6,7 @@ const pool = require('../modules/pool');
 // Get all items
 router.get('/:id', (req, res) => {
   console.log('in items router:' ,req.params.id)
-  let queryText = 'SELECT id, amount, name FROM "item" WHERE list_id=$1 ORDER BY complete ASC;';
+  let queryText = 'SELECT id, amount, name, complete FROM "item" WHERE list_id=$1 ORDER BY complete ASC;';
   pool.query(queryText, [req.params.id]).then(result => {
     // Sends back the results in an object
     res.send(result.rows);
