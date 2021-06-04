@@ -39,10 +39,22 @@ function* fetchList(){
     }
 }
 
+function* deleteList(action) {
+  console.log('In delete list saga', action.payload);
+  try {
+      yield axios.delete(`/list/${action.payload}`);
+      yield put({ type: 'FETCH_LIST' })
+  } catch (error) {
+      alert(`Sorry. things are not working at the moment. Try again later`)
+      console.log('error deleting list', error);
+  }
+}
+
   function* listSaga() {
     yield takeLatest('ADD_LIST', addList);
     yield takeLatest('FETCH_LIST', fetchList);
     yield takeLatest('UPDATE_LIST', editList);
+    yield takeLatest('DELETE_LIST', deleteList);
     
 }
 export default listSaga;

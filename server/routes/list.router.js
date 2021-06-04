@@ -65,6 +65,25 @@ router.put('/:id', (req, res) => {
 //     });
 // });
 
+router.delete('/:id', (req, res) => {
+  console.log(req.params.id);
+
+  console.log('Delete request for id', req.params.id);
+  let sqlText = `DELETE FROM item WHERE list_id=$1;`;
+  pool.query(sqlText, [req.params.id])
+
+  let secondText = `DELETE FROM list WHERE id = $1;`;
+  pool.query(secondText, [req.params.id])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(`Error making database query ${sqlText}`, err);
+      res.sendStatus(500)
+    })
+
+});
+
 router.post('/', async (req, res) => {
     const client = await pool.connect();
     try {

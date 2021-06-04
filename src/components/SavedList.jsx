@@ -16,6 +16,12 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
 import SavedItem from './SavedItem'
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 
 const useStyles = makeStyles({
     numberInput: {
@@ -43,7 +49,17 @@ const useStyles = makeStyles({
     },
     daysAmount: {
         width: '5ch',
-    }
+    },
+    deleteIcon: {
+        marginLeft: -13,
+    },
+    deleteBtn: {
+        padding: 10,
+        marginTop: 40,
+        marginBottom: 40,
+        // paddingLeft: 10,
+        // paddingRight: 10,
+    },
 })
 const theme = createMuiTheme({
     palette: {
@@ -157,7 +173,7 @@ function SavedList() {
 
         // Set values in state from our list reducer
         setTitle(trip.location);
-        setDate(trip.start_date);
+        setDate(trip.start_date.slice(0,10));
         setDays(trip.days);
 
     }
@@ -214,7 +230,22 @@ function SavedList() {
     //     setEditItem(false)
     // }
 
+    const [open, setOpen] = useState(false);
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+    function deleteList(){
+        setOpen(false);
+        dispatch({ type: 'DELETE_LIST', payload: id});
+        history.push('/user');
+
+    }
 
 
 
@@ -296,7 +327,7 @@ function SavedList() {
                     }} value={name}
                      onChange={(event) => setName(event.target.value)} />
                     
-                   <Button variant="contained" autoComplete="off" className={classes.addBtn} size="medium" color="secondary" onClick={addItem}>Add Item</Button>
+                   <Button variant="contained" autoComplete="off" style={{backgroundColor: '#ff9800'}} className={classes.addBtn} size="medium" onClick={addItem}>Add Item</Button>
                     
                  </Grid>
                  </Grid>
@@ -319,6 +350,32 @@ function SavedList() {
 //   <Button variant="contained" className={classes.saveBtn} size="large" color="primary" onClick={saveList}>SAVE LIST</Button>
 //   </ThemeProvider> */} 
 
+        <Grid align="center">
+        <Button style={{backgroundColor: '#e91e63'}} variant="contained" className={classes.deleteBtn} endIcon={<DeleteIcon fontSize="large" style={{color: 'black'}} className={classes.deleteIcon} />} onClick={handleClickOpen} />
+        {/* #b22a00
+        #b23b47 */}
+        <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        {/* <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle> */}
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to delete this list?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={deleteList} color="primary" autoFocus>
+            Yes
+          </Button>
+        </DialogActions>
+      </Dialog>
+        </Grid>
         </Container>
 
     );

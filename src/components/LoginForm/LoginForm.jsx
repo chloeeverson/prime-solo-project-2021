@@ -79,11 +79,11 @@ function LoginForm() {
           {/* </CardHeader>
           <CardContent> */}
           <Grid item lg={2} xs={6} sm={3} md={3}>
-          <TextField noValidate autoComplete="off" required variant="standard" label="Username" color="secondary" value={username}
+          <TextField noValidate autoComplete="off" required variant="standard" label="Username" color="primary" value={username}
             onChange={(event) => setUsername(event.target.value)}/>
             </Grid>
             <Grid item lg={2} xs={6} sm={3} md={3}>
-          <TextField className={classes.password} required label="Password" variant="standard" color="secondary" value={password} 
+          <TextField className={classes.password} required label="Password" variant="standard" color="primary" value={password} 
             type="password" noValidate autoComplete="off" onChange={(event) => setPassword(event.target.value)}/>
             </Grid>
           <ThemeProvider theme={theme}>
