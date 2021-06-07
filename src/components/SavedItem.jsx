@@ -78,18 +78,19 @@ function SavedItem(value){
         console.log(value)
         if (value.complete == true ){
             console.log(value.name ,'is complete')
-            checked = true
+            setChecked(true);
         }
     }
 
     const handleToggle = (value) => () => {
+    
         console.log(value)
         console.log(checked)
-        if (checked === true){
-            checked = false
+        if (checked == true){
+            setChecked(false)
         }
         else {
-            checked = true
+            setChecked(true)
         }
         // const currentIndex = checked.indexOf(value);
         // const newChecked = [...checked];
@@ -99,9 +100,9 @@ function SavedItem(value){
         // } else {
         //     newChecked.splice(currentIndex, 1);
         // }
-        console.log(checked)
+    
         dispatch({ type: 'UPDATE_COMPLETE', payload: {id: value.id, list_id: id}})
-        setChecked(checked);
+        
 
     };
 
@@ -127,7 +128,7 @@ function SavedItem(value){
 
     }
     return(
-        <ListItem role={undefined} dense button onClick={handleToggle()} >
+        <ListItem role={undefined} dense button onClick={handleToggle(value)} >
             {editItem ?
                         <>
                             <TextField autoComplete="off" className={classes.editAmount} type="text" align="center" color="primary" variant="standard" value={newAmount}

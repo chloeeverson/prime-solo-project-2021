@@ -159,11 +159,11 @@ function PackingList() {
                 </div>
                 {/* <ul> */}
                 <List className={classes.root}>
-      {items.map((value) => {
+      {items.map((value, index) => {
         const labelId = `checkbox-list-label-${value}`;
         return (
             <ListItem key={value.name} role={undefined} dense button onClick={handleToggle(value)}>
-              <ListItemIcon>
+              {/* <ListItemIcon>
                 <Checkbox
                   edge="start"
                   checked={checked.indexOf(value) !== -1}
@@ -172,13 +172,13 @@ function PackingList() {
                   inputProps={{ 'aria-labelledby': labelId }}
                   color="default"
                 />
-              </ListItemIcon>
+              </ListItemIcon> */}
               <ListItemText id={labelId} primary={`${value.amount} ${value.name}`} />
               <ListItemSecondaryAction>
-              <IconButton onClick={()=> dispatch({type:'EDIT_ITEM', payload: value.id})} edge="end" aria-label="edit">
+              <IconButton onClick={()=> dispatch({type:'UPDATE_NEW_ITEM', payload: {index: index, amount: value.amount, name: value.name}})} edge="end" aria-label="edit">
               <EditIcon />
               </IconButton>
-                <IconButton onClick={()=> dispatch({type:'DELETE_ITEM', payload: value.id})} edge="end" aria-label="delete">
+                <IconButton onClick={()=> dispatch({type:'DELETE_NEW_ITEM', payload: index})} edge="end" aria-label="delete">
               
                   <DeleteIcon />
                   
