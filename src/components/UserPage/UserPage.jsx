@@ -56,7 +56,7 @@ function UserPage() {
     <Container>
 <ThemeProvider theme={theme}>
     <Typography variant="h3" align="center" color="primary">SAVED LISTS</Typography>
-    <Grid align="center" className={classes.list} container spacing={8}>
+    <Grid align="center" className={classes.list} container spacing={6}>
         {list.map((trip) => 
           <Grid item lg={6} med={3} xs={12} onClick={() => handleList(trip)} key={trip.id}>
             <Card  style={{backgroundColor: '#cddc39'}} className={classes.listItem}>

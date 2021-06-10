@@ -128,7 +128,7 @@ function SavedItem(value){
 
     }
     return(
-        <ListItem role={undefined} dense button onClick={handleToggle(value)} >
+        <ListItem role={undefined} dense button >
             {editItem ?
                         <>
                             <TextField autoComplete="off" className={classes.editAmount} type="text" align="center" color="primary" variant="standard" value={newAmount}
@@ -150,7 +150,7 @@ function SavedItem(value){
 
                         <>
                         <ListItemIcon>
-                            <Checkbox 
+                            <Checkbox onClick={handleToggle(value)}
                                 edge="start"
                                 checked={checked}
                                 // checked={checked.indexOf(value) !== -1}

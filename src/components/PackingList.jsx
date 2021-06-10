@@ -65,6 +65,9 @@ function PackingList() {
     const [name, setName] = useState('');
     const [amount, setAmount] = useState(1);
 
+    const [newName, setNewName] = useState('');
+    const [newAmount, setNewAmount] = useState('');
+
     const [checked, setChecked] = useState([0]);
 
   const handleToggle = (value) => () => {
@@ -126,6 +129,12 @@ function PackingList() {
 
     }
   
+    function updateItem (index){
+      dispatch({type:'UPDATE_NEW_ITEM', payload: {index: index, amount: newAmount, name: newName}})
+      setNewName('');
+      setNewAmount('');
+
+    }
     
 
 
@@ -175,7 +184,7 @@ function PackingList() {
               </ListItemIcon> */}
               <ListItemText id={labelId} primary={`${value.amount} ${value.name}`} />
               <ListItemSecondaryAction>
-              <IconButton onClick={()=> dispatch({type:'UPDATE_NEW_ITEM', payload: {index: index, amount: value.amount, name: value.name}})} edge="end" aria-label="edit">
+              <IconButton onClick={() => updateItem(index)} edge="end" aria-label="edit">
               <EditIcon />
               </IconButton>
                 <IconButton onClick={()=> dispatch({type:'DELETE_NEW_ITEM', payload: index})} edge="end" aria-label="delete">

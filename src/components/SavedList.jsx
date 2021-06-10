@@ -343,7 +343,7 @@ function SavedList() {
                             // handleToggle(value);
                         }
                         return (
-                            <SavedItem key={value.id} id={value.id} name={value.name} amount={value.amount} />)})}
+                            <SavedItem key={value.id} complete={value.complete} id={value.id} name={value.name} amount={value.amount} />)})}
 
      
                 </List>
