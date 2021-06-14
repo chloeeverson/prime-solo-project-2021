@@ -12,6 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import { Typography, Grid, TextField, makeStyles, Button, Container, createMuiTheme, ThemeProvider } from '@material-ui/core';
 import { useHistory, useParams } from 'react-router-dom';
+import { ContactSupportOutlined } from '@material-ui/icons';
 
 
 const useStyles = makeStyles({
@@ -61,19 +62,48 @@ function SavedItem(value){
     const [editItem, setEditItem] = useState(false);
     const items = useSelector(store => store.items);
 
-    const [checked, setChecked] = useState([0]);
+    const [checked, setChecked] = useState(false);
+
+    // if (value.complete === true ){
+    //     console.log(value.name ,'is complete')
+    //     handleToggle(value);
+    // }
+
+    useEffect(() => {
+        handleComplete(value);
+      },[]);
+
+    function handleComplete(value){
+        console.log('in handlecomplete')
+        console.log(value)
+        if (value.complete == true ){
+            console.log(value.name ,'is complete')
+            setChecked(true);
+        }
+    }
 
     const handleToggle = (value) => () => {
-        const currentIndex = checked.indexOf(value);
-        const newChecked = [...checked];
-
-        if (currentIndex === -1) {
-            newChecked.push(value);
-        } else {
-            newChecked.splice(currentIndex, 1);
+    
+        console.log(value)
+        console.log(checked)
+        if (checked == true){
+            setChecked(false)
         }
+        else {
+            setChecked(true)
+        }
+        // const currentIndex = checked.indexOf(value);
+        // const newChecked = [...checked];
 
-        setChecked(newChecked);
+        // if (currentIndex === -1) {
+        //     newChecked.push(value);
+        // } else {
+        //     newChecked.splice(currentIndex, 1);
+        // }
+    
+        dispatch({ type: 'UPDATE_COMPLETE', payload: {id: value.id, list_id: id}})
+        
+
     };
 
     function handleItemSave(value){
@@ -98,7 +128,7 @@ function SavedItem(value){
 
     }
     return(
-        <ListItem role={undefined} dense button onClick={handleToggle(value)} >
+        <ListItem role={undefined} dense button >
             {editItem ?
                         <>
                             <TextField autoComplete="off" className={classes.editAmount} type="text" align="center" color="primary" variant="standard" value={newAmount}
@@ -120,10 +150,11 @@ function SavedItem(value){
 
                         <>
                         <ListItemIcon>
-                            <Checkbox
+                            <Checkbox onClick={handleToggle(value)}
                                 edge="start"
-                                checked={checked.indexOf(value) !== -1}
-                                tabIndex={-1}
+                                checked={checked}
+                                // checked={checked.indexOf(value) !== -1}
+                                // tabIndex={-1}
                                 disableRipple
                                 inputProps={{ 'aria-labelledby': labelId }}
                                 color="default"

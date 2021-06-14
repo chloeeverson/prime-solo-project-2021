@@ -32,9 +32,9 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
-  useEffect(() => {
-    dispatch({type: 'FETCH_LIST'})
-  },[]);
+  // useEffect(() => {
+  //   dispatch({type: 'FETCH_LIST'})
+  // },[]);
 
   return (
     <Router>
