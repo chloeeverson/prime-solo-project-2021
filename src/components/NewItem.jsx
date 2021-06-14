@@ -1,23 +1,23 @@
-import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useState } from 'react'
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
-import List from '@material-ui/core/List';
+
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
+
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
+
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Typography, Grid, TextField, makeStyles, Button, Container, createMuiTheme, ThemeProvider } from '@material-ui/core'; 
+import {TextField, makeStyles} from '@material-ui/core'; 
 
 
 const useStyles = makeStyles({
     numberInput: {
         width: '5ch',
         marginRight: 20,
-        // marginTop: 20,
+       
     },
     input: {
         marginTop: 30,
@@ -34,17 +34,7 @@ const useStyles = makeStyles({
       marginTop: 20,
     }
 })
-const theme = createMuiTheme({
-    palette: {
-        secondary: {
-            main: '#F49D0C'
-        },
-        primary: {
-          main: '#FFFFFF'
-      },
-    }
 
-  })
 
 function NewItem(value) {
     console.log('passing over prop index:', value.index)

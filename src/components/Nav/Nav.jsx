@@ -4,7 +4,7 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Typography, makeStyles, createMuiTheme, ThemeProvider, Box, Grid, Container, AppBar, ToolBar } from '@material-ui/core';
+import { Typography, makeStyles, createMuiTheme, ThemeProvider, Grid } from '@material-ui/core';
 import CardTravelIcon from '@material-ui/icons/CardTravel';
 
 const theme = createMuiTheme({
@@ -40,8 +40,7 @@ const useStyles = makeStyles({
   logo: {
     marginTop: 5,
     marginLeft: -16,
-    // alignItems: "center",
-    // justifyContent: "center"
+
   },
   loginNav: {
     marginRight: 133,
@@ -69,8 +68,7 @@ function Nav() {
   const user = useSelector((store) => store.user);
 
   let loginLinkData = {
-    // path: '/login',
-    // text: 'Login / Register',
+
     path: '',
     text: '',
   };
@@ -87,18 +85,12 @@ function Nav() {
 
   }
 
-  // if (user.id != null && location.pathname != "/list" && location.pathname != "/prompt") {
-  //   dispatch({type: 'RESET_CURRENT_LIST'})
-
-  // }
-
-  
 
   return (
 
       <div className="nav">
       <Link style={{color: '#F49D0C', marginLeft: 5}}
-        // className="navLink" 
+  
         to={loginLinkData.path}>
         {loginLinkData.text}
       </Link>
@@ -117,9 +109,7 @@ function Nav() {
           <Grid item>
 
             <Typography className={classes.title} variant="h6" style={{color: '#2c387e', align: 'center'}} align="center">packMe</Typography>
-            {/* <Grid item className={classes.titleHome}>
-          <Typography align="center" variant="h1">SAVED LISTS</Typography>
-          </Grid> */}
+
           </Grid>
         </Grid>
       </ThemeProvider>)}
@@ -138,9 +128,7 @@ function Nav() {
           <Grid item>
 
             <Typography className={classes.title} variant="h6" style={{color: '#2c387e', align: 'center'}} align="center">packMe</Typography>
-            {/* <Grid item className={classes.titleHome}>
-          <Typography align="center" variant="h1">SAVED LISTS</Typography>
-          </Grid> */}
+    
           </Grid>
         </Grid>
       </ThemeProvider>)}
@@ -159,9 +147,7 @@ function Nav() {
           <Grid item>
 
             <Typography  className={classes.title} variant="h6" style={{color: '#2c387e', align: 'center'}} align="center">packMe</Typography>
-            {/* <Grid item className={classes.titleHome}>
-          <Typography align="center" variant="h1">SAVED LISTS</Typography>
-          </Grid> */}
+     
           </Grid>
         </Grid>
       </ThemeProvider>
@@ -173,19 +159,15 @@ function Nav() {
 
         {user.id && (
           <>
-            {/* <Link className="navLink" to="/info">
-              Info Page
-            </Link> */}
+   
             <LogOutButton 
             className="navLink" 
-            // className={classes.logout}
+           
             />
           </>
         )}
 
-        {/* <Link className="navLink" to="/about">
-          About
-        </Link> */}
+      
   
   </div>
 

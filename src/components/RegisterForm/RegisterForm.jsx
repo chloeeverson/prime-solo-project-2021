@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {Button, Grid, Container, Typography, TextField, Card, CardHeader, CardContent, makeStyles, createMuiTheme, ThemeProvider} from '@material-ui/core';
+import {Button, Grid, Container, Typography, TextField, makeStyles, createMuiTheme, ThemeProvider} from '@material-ui/core';
 
 const useStyles = makeStyles({
 
@@ -53,8 +53,7 @@ function RegisterForm() {
 
     <Container align="center" className={classes.register}>
       <Grid noValidate autoComplete="off" onSubmit={registerUser}>
-        {/* <Card>
-          <CardHeader> */}
+   
           <Grid item lg={2} xs={6} sm={3} md={3}>
           <Typography variant="h5" className={classes.signup}>Sign Up</Typography>
           </Grid>
@@ -63,8 +62,7 @@ function RegisterForm() {
           {errors.registrationMessage}
         </h3>
       )}
-          {/* </CardHeader>
-          <CardContent> */}
+        
           <Grid item lg={2} xs={6} sm={3} md={3}>
           <TextField noValidate autoComplete="off" required variant="standard" label="Username" color="primary" value={username}
             onChange={(event) => setUsername(event.target.value)}/>
@@ -78,48 +76,11 @@ function RegisterForm() {
             <Button variant="contained" className={classes.btn} color="primary" align="center" onClick={registerUser}>Sign Up</Button>
             </Grid>
             </ThemeProvider>
-  
-          {/* </CardContent>
-        </Card> */}
+ 
       </Grid>
     </Container>
    
 
-    // <form className="formPanel" onSubmit={registerUser}>
-    //   <h2>Register User</h2>
-    //   {errors.registrationMessage && (
-    //     <h3 className="alert" role="alert">
-    //       {errors.registrationMessage}
-    //     </h3>
-    //   )}
-    //   <div>
-    //     <label htmlFor="username">
-    //       Username:
-    //       <input
-    //         type="text"
-    //         name="username"
-    //         value={username}
-    //         required
-    //         onChange={(event) => setUsername(event.target.value)}
-    //       />
-    //     </label>
-    //   </div>
-    //   <div>
-    //     <label htmlFor="password">
-    //       Password:
-    //       <input
-    //         type="password"
-    //         name="password"
-    //         value={password}
-    //         required
-    //         onChange={(event) => setPassword(event.target.value)}
-    //       />
-    //     </label>
-    //   </div>
-    //   <div>
-    //     <input className="btn" type="submit" name="submit" value="Register" />
-    //   </div>
-    // </form>
   );
 }
 

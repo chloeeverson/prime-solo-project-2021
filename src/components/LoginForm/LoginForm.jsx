@@ -4,7 +4,7 @@ import {useSelector} from 'react-redux';
 import {useHistory} from 'react-router-dom'
 
 import {Button, Grid, Container, Typography, TextField, Card, CardHeader, CardContent, makeStyles, createMuiTheme, ThemeProvider} from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
+
 
 const useStyles = makeStyles({
 
@@ -66,8 +66,7 @@ function LoginForm() {
    
     <Container align="center" className={classes.login}>
       <Grid noValidate autoComplete="off" onSubmit={login}>
-        {/* <Card>
-          <CardHeader> */}
+   
           <Grid item lg={2} xs={6} sm={3} md={3}>
           <Typography variant="h5" className={classes.signin}>Sign In</Typography>
           </Grid>
@@ -76,8 +75,7 @@ function LoginForm() {
           {errors.loginMessage}
         </h3>
       )}
-          {/* </CardHeader>
-          <CardContent> */}
+         
           <Grid item lg={2} xs={6} sm={3} md={3}>
           <TextField noValidate autoComplete="off" required variant="standard" label="Username" color="primary" value={username}
             onChange={(event) => setUsername(event.target.value)}/>
@@ -91,49 +89,10 @@ function LoginForm() {
           <Button variant="contained" className={classes.btn} color="primary" align="center" onClick={login}>Sign In</Button>
           </Grid>
             </ThemeProvider>
-  
-          {/* </CardContent>
-        </Card> */}
+
       </Grid>
     </Container>
-    
   
-
-    {/* <form className="formPanel" onSubmit={login}>
-      <h2>Login</h2>
-      {errors.loginMessage && (
-        <h3 className="alert" role="alert">
-          {errors.loginMessage}
-        </h3>
-      )}
-      <div>
-        <label htmlFor="username">
-          Username:
-          <input
-            type="text"
-            name="username"
-            required
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <label htmlFor="password">
-          Password:
-          <input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
-        </label>
-      </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
-      </div>
-    </form> */}
     </>
   );
 }
