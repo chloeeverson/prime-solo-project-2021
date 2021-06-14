@@ -21,6 +21,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import createSpacing from '@material-ui/core/styles/createSpacing';
 
 
 const useStyles = makeStyles({
@@ -49,6 +50,12 @@ const useStyles = makeStyles({
     },
     daysAmount: {
         width: '5ch',
+        marginLeft: -125,
+    },
+    days: {
+        marginTop: -25,
+        marginLeft: -30,
+        marginBottom: 10,
     },
     deleteIcon: {
         marginLeft: -13,
@@ -255,6 +262,7 @@ function SavedList() {
 
 
             {trip && trip.location && editMode ?
+            
                 <Grid align="center" >
                     {/* <Grid spacing={1} alignItems="flex-end" align="center"> */}
                     <Grid item>
@@ -264,14 +272,19 @@ function SavedList() {
                         <TextField autoComplete="off" variant="standard" align="center" type="date" color="primary" value={date}
                             onChange={(event) => setDate(event.target.value)} />
                     </Grid>
-                    <Grid item>
-                        <TextField autoComplete="off" className={classes.daysAmount} variant="standard" align="center" type="number" color="primary" value={days}
+                    
+                    
+                        <Grid item>
+                        <TextField autoComplete="off" className={classes.daysAmount} variant="standard" type="number" color="primary" value={days}
                             onChange={(event) => setDays(event.target.value)} />
-                        <Typography variant="subtitle1" align="center" color="primary" >days</Typography>
+                        <Typography variant="subtitle1" className={classes.days} color="inherit">days</Typography>
                     </Grid>
 
                     <Grid item><SaveIcon onClick={handleSave} /></Grid>
                 </Grid>
+                
+                
+
                 :
                 <Grid align="center">
                     <Grid item>

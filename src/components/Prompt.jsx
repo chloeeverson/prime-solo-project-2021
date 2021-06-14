@@ -71,6 +71,8 @@ function Prompt() {
 
     const dispatch = useDispatch();
 
+    const isEnabled = where.length > 0 && when.length > 0 && days.length > 0
+
     function packingList() {
         console.log('adding to saved lists:', {where}, {when}, 'to saved lists');
         if (where && when && days) {
@@ -104,7 +106,7 @@ function Prompt() {
                 <Typography className={classes.prompt} lg={2} variant="subtitle1">Where are you going?</Typography>
             </Grid>
             <Grid item>
-                <CssTextField inputProps={{style: { textAlign: 'center' }}} className={classes.answer} variant="outlined"  required value={where}
+                <CssTextField inputProps={{style: { textAlign: 'center' }}} className={classes.answer} variant="outlined" required value={where}
             onChange={(event) => setWhere(event.target.value)} />
             </Grid>
             <Grid item>
@@ -123,7 +125,7 @@ function Prompt() {
             onChange={(event) => setDays(event.target.value)}/>
             </Grid>
             <ThemeProvider theme={theme}>
-            <Button variant="contained" className={classes.btn} size="large" color="primary" onClick={packingList} endIcon={<ArrowForwardIosIcon />}>Packing List</Button>
+            <Button variant="contained" className={classes.btn} disabled={!isEnabled} size="large" color="primary" onClick={packingList} endIcon={<ArrowForwardIosIcon />}>Packing List</Button>
             </ThemeProvider>
             {/* <KeyboardDatePicker
           disableToolbar

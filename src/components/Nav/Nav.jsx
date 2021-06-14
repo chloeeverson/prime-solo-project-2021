@@ -29,6 +29,7 @@ const useStyles = makeStyles({
 
   title: {
     marginTop: -4,
+  
   },
   logo: {
     marginTop: 15,
@@ -39,8 +40,11 @@ const useStyles = makeStyles({
     alignItems: 'center'
   },
   suitcase: {
-    marginLeft: 20,
-  }
+    marginLeft: 19,
+   
+  },
+  
+
 
 })
 
@@ -82,7 +86,7 @@ function Nav() {
   return (
 
     <div className="nav">
-      <Link style={{color: '#F49D0C', marginLeft: 5}}
+      <Link className={classes.listLink} style={{color: '#F49D0C', marginLeft: 5}}
         // className="navLink" 
         to={loginLinkData.path}>
         {loginLinkData.text}
