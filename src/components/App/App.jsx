@@ -16,7 +16,7 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import UserPage from '../UserPage/UserPage';
 
-import LandingPage from '../LandingPage/LandingPage';
+
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Prompt from '../Prompt';
@@ -102,16 +102,7 @@ function App() {
             <RegisterPage />
           </ProtectedRoute>
 
-          <ProtectedRoute
-            // with authRedirect:
-            // - if logged in, redirects to "/user"
-            // - else shows LandingPage at "/home"
-            exact
-            path="/login"
-            authRedirect="/user"
-          >
-            <LandingPage />
-          </ProtectedRoute>
+     
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
