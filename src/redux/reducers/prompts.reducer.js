@@ -1,30 +1,3 @@
-// import {put} from 'redux-saga/effects'
-// import axios from 'axios'
-
-// function* addLocation(action){
-//     try{
-//       yield axios.post('/location', action.payload);
-//       yield put({type: 'FETCH_LOCATION'})
-//     } catch(error){
-//     alert(`Sorry. things are not working at the moment. Try again later`)
-//     console.log('error adding location', error);
-//     }
-//   }
-
-// export default addLocation;
-
-// function* addLocation(action){
-//     try{
-//       yield axios.post('/location', action.payload);
-//       yield put({type: 'FETCH_LOCATION'})
-//     } catch(error){
-//     alert(`Sorry. things are not working at the moment. Try again later`)
-//     console.log('error adding location', error);
-//     }
-//   }
-
-// export default addLocation;
-
 const prompts = (state = [], action) => {
     // set book list with data from server
     if (action.type === 'ADD_PROMPTS'){
