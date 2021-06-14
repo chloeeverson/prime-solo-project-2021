@@ -15,6 +15,8 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
+import NewItem from './NewItem'
+
 const useStyles = makeStyles({
     numberInput: {
         width: '5ch',
@@ -169,33 +171,13 @@ function PackingList() {
                 {/* <ul> */}
                 <List className={classes.root}>
       {items.map((value, index) => {
-        const labelId = `checkbox-list-label-${value}`;
+        // const labelId = `checkbox-list-label-${value}`;
+        console.log('mapping index:', index)
         return (
-            <ListItem key={value.name} role={undefined} dense button onClick={handleToggle(value)}>
-              {/* <ListItemIcon>
-                <Checkbox
-                  edge="start"
-                  checked={checked.indexOf(value) !== -1}
-                  tabIndex={-1}
-                  disableRipple
-                  inputProps={{ 'aria-labelledby': labelId }}
-                  color="default"
-                />
-              </ListItemIcon> */}
-              <ListItemText id={labelId} primary={`${value.amount} ${value.name}`} />
-              <ListItemSecondaryAction>
-              <IconButton onClick={() => updateItem(index)} edge="end" aria-label="edit">
-              <EditIcon />
-              </IconButton>
-                <IconButton onClick={()=> dispatch({type:'DELETE_NEW_ITEM', payload: index})} edge="end" aria-label="delete">
-              
-                  <DeleteIcon />
-                  
-                </IconButton>
-              </ListItemSecondaryAction>
-            </ListItem>
-          );
-        })}
+          <NewItem key={value.name} index={index} name={value.name} amount={value.amount} />)})}
+            
+          
+       
       </List>
         {/* {items.map((item) => 
           <li key={item.id}>{item.amount} {item.name}</li>  
