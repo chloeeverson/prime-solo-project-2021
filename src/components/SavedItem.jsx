@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from 'react'
 import EditIcon from '@material-ui/icons/Edit';
 import SaveIcon from '@material-ui/icons/Save';
-import List from '@material-ui/core/List';
+
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
@@ -10,16 +10,16 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
-import { Typography, Grid, TextField, makeStyles, Button, Container, createMuiTheme, ThemeProvider } from '@material-ui/core';
-import { useHistory, useParams } from 'react-router-dom';
-import { ContactSupportOutlined } from '@material-ui/icons';
+import { TextField, makeStyles} from '@material-ui/core';
+import { useParams } from 'react-router-dom';
+
 
 
 const useStyles = makeStyles({
     numberInput: {
         width: '5ch',
         marginRight: 20,
-        // marginTop: 20,
+        
     },
     input: {
         marginTop: 30,
@@ -37,13 +37,6 @@ const useStyles = makeStyles({
     },
     editAmount: {
         width: '5ch',
-    }
-})
-const theme = createMuiTheme({
-    palette: {
-        primary: {
-            main: '#F49D0C'
-        }
     }
 })
 
@@ -64,10 +57,7 @@ function SavedItem(value){
 
     const [checked, setChecked] = useState(false);
 
-    // if (value.complete === true ){
-    //     console.log(value.name ,'is complete')
-    //     handleToggle(value);
-    // }
+
 
     useEffect(() => {
         handleComplete(value);
@@ -92,14 +82,7 @@ function SavedItem(value){
         else {
             setChecked(true)
         }
-        // const currentIndex = checked.indexOf(value);
-        // const newChecked = [...checked];
-
-        // if (currentIndex === -1) {
-        //     newChecked.push(value);
-        // } else {
-        //     newChecked.splice(currentIndex, 1);
-        // }
+      
     
         dispatch({ type: 'UPDATE_COMPLETE', payload: {id: value.id, list_id: id}})
         
@@ -153,8 +136,6 @@ function SavedItem(value){
                             <Checkbox onClick={handleToggle(value)}
                                 edge="start"
                                 checked={checked}
-                                // checked={checked.indexOf(value) !== -1}
-                                // tabIndex={-1}
                                 disableRipple
                                 inputProps={{ 'aria-labelledby': labelId }}
                                 color="default"
@@ -181,52 +162,3 @@ function SavedItem(value){
 export default SavedItem;
 
 
-{/* // <ListItem key={value.id} role={undefined} dense button onClick={handleToggle(value)} > */}
-                                
-                                
-                //                 {editItem ?
-                //                 <>
-                //                     <TextField className={classes.editAmount} type="text" align="center" color="primary" variant="standard" value={amount}
-                //                     onChange={(event) => setAmount(event.target.value)} />
-                //                     <TextField type="text" align="center" color="primary" variant="standard" value={name}
-                //                     onChange={(event) => setName(event.target.value)} />
-                //                     <ListItemSecondaryAction>
-
-                //                     <IconButton onClick={() => handleItemSave(value)} edge="end" aria-label="edit">
-                //                         <SaveIcon />
-                //                     </IconButton>
-                                
-                //                     </ListItemSecondaryAction></>
-
-                //                 :
-
-                                
-
-
-                //                 <>
-                //                 <ListItemIcon>
-                //                     <Checkbox
-                //                         edge="start"
-                //                         checked={checked.indexOf(value) !== -1}
-                //                         tabIndex={-1}
-                //                         disableRipple
-                //                         inputProps={{ 'aria-labelledby': labelId }}
-                //                         color="default"
-                //                     />
-                //                 </ListItemIcon>
-                //                 <ListItemText id={labelId} primary={`${value.amount} ${value.name}`} />
-                //                 <ListItemSecondaryAction>
-
-                //                 <IconButton onClick={() => handleEditItem(value)} edge="end" aria-label="edit">
-                //                         <EditIcon />
-                //                     </IconButton>
-                //                     <IconButton onClick={() => dispatch({ type: 'DELETE_ITEM', payload: { item: value.id, list: id } })} edge="end" aria-label="delete">
-
-                //                         <DeleteIcon />
-
-                //                     </IconButton>
-                //                 </ListItemSecondaryAction>
-                //                 </> }
-                //             </ListItem>
-                        // );
-                //     })}

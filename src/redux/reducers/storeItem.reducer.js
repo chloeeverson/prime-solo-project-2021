@@ -1,4 +1,3 @@
-import { LensOutlined, Loop } from "@material-ui/icons";
 
 const storeItem = (state = [], action) => {
     console.log('hello from the storeItem reducer');

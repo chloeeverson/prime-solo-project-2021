@@ -1,19 +1,11 @@
 import { Typography, Grid, TextField, makeStyles, Button, Container , createMuiTheme, ThemeProvider} from '@material-ui/core';
+import List from '@material-ui/core/List';
+
 import { useSelector, useDispatch } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import {useHistory} from 'react-router-dom'
 
-import prompts from '../redux/reducers/prompts.reducer';
 import moment from 'moment';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 
 import NewItem from './NewItem'
 
@@ -21,7 +13,7 @@ const useStyles = makeStyles({
     numberInput: {
         width: '5ch',
         marginRight: 20,
-        // marginTop: 20,
+        
     },
     input: {
         marginTop: 30,
@@ -71,36 +63,13 @@ function PackingList() {
     const [newName, setNewName] = useState('');
     const [newAmount, setNewAmount] = useState('');
 
-    const [checked, setChecked] = useState([0]);
-
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
-
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    setChecked(newChecked);
-  };
-
-    // useEffect(()=> {
-    //     dispatch({type: 'FETCH_ITEMS'})
-    // }, []);
     
+
+  
 
     function addItem() {
       console.log({items});
-        // console.log('adding', {amount}, {name});
-        // dispatch(
-        // {type: 'ADD_ITEM', payload:{
-        //     name: name, 
-        //     amount: amount,
-        // }})
-        //    setName('');
-        // setAmount(1);
+  
         dispatch({type: 'STORE_ITEM', payload:{
             name: name, 
             amount: amount,
@@ -112,37 +81,20 @@ function PackingList() {
     function saveList(){
         console.log('saving list', list.location, list.start_date)
         console.log('adding', {items});
-        dispatch({type: 'ADD_LIST', payload:{
+        dispatch(
+          {type: 'ADD_LIST', payload:{
             location: list.location,
             start_date: list.start_date,
             days: list.days,
             items: items,
-        }});
-        // {type: 'ADD_ITEM', payload:{
-        //     name: name, 
-        //     amount: amount,
-        // }})
-        // console.log('adding', {amount}, {name});
-        // dispatch({type: 'ADD_ITEM', payload:{
-        //     name: name, 
-        //     amount: amount,
-        // }})
-        dispatch({type: 'RESET_ITEMS'}, {type: 'RESET_CURRENT_LIST'});
+          }});
+        dispatch({type: 'RESET_ITEMS'}, 
+          {type: 'RESET_CURRENT_LIST'});
         
         history.push('/user');
 
     }
   
-    function updateItem (index){
-      dispatch({type:'UPDATE_NEW_ITEM', payload: {index: index, amount: newAmount, name: newName}})
-      setNewName('');
-      setNewAmount('');
-
-    }
-    
-
-
-
     return (
         <Container>
             <Grid align="center">
@@ -170,10 +122,10 @@ function PackingList() {
                     <Button variant="contained" className={classes.addBtn} size="medium" color="secondary" onClick={addItem}>Add Item</Button>
                     
                 </div>
-                {/* <ul> */}
+               
                 <List className={classes.root}>
       {items.map((value, index) => {
-        // const labelId = `checkbox-list-label-${value}`;
+  
         console.log('mapping index:', index)
         return (
           <NewItem key={value.name} index={index} name={value.name} amount={value.amount} />)})}
@@ -181,10 +133,7 @@ function PackingList() {
           
        
       </List>
-        {/* {items.map((item) => 
-          <li key={item.id}>{item.amount} {item.name}</li>  
-        )}
-      </ul> */}
+   
       <ThemeProvider theme={theme}>
       <Button variant="contained" className={classes.saveBtn} size="large" color="primary" onClick={saveList}>SAVE LIST</Button>
       </ThemeProvider>
