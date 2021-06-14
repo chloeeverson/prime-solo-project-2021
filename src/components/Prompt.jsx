@@ -1,10 +1,10 @@
-import { Typography, TextField, Grid, makeStyles, Button , withStyles, createMuiTheme, ThemeProvider} from '@material-ui/core';
+import { Typography, TextField, Grid, makeStyles, Button , withStyles} from '@material-ui/core';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
-import {KeyboardDatePicker} from '@material-ui/pickers';
+
 
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
+
 import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles({
@@ -30,14 +30,6 @@ const useStyles = makeStyles({
 })
 
 
-const theme = createMuiTheme({
-    // palette: {
-   
-    //   primary: {
-    //     main: '#ff9800'
-    //   }
-    // }
-  })
 
 const CssTextField = withStyles({
     root: {
@@ -77,13 +69,7 @@ function Prompt() {
         console.log('adding to saved lists:', {where}, {when}, 'to saved lists');
         if (where && when && days) {
             dispatch(
-                // {
-                // type: 'ADD_LIST',
-                // payload: {
-                //     location: where,
-                //     start_date: when,
-                //     days: days,
-                // }},
+      
                 {type: 'ADD_CURRENT_LIST',
                 payload: {
                     location: where,
@@ -124,22 +110,10 @@ function Prompt() {
                 <CssTextField inputProps={{min: 0, style: { textAlign: 'center' }}} className={classes.answer} type="number" variant="outlined"  required value={days}
             onChange={(event) => setDays(event.target.value)}/>
             </Grid>
-            <ThemeProvider theme={theme}>
+           
             <Button variant="contained" className={classes.btn} disabled={!isEnabled} size="large" color="primary" onClick={packingList} endIcon={<ArrowForwardIosIcon />}>Packing List</Button>
-            </ThemeProvider>
-            {/* <KeyboardDatePicker
-          disableToolbar
-          variant="inline"
-          format="MM/dd/yyyy"
-          margin="normal"
-          id="date-picker-inline"
-          label="Date picker inline"
-          value={when}
-          onChange={(event) => setWhen(event.target.value)}
-          KeyboardButtonProps={{
-            'aria-label': 'change date',
-          }}
-        /> */}
+         
+       
         </Grid>
     );
 

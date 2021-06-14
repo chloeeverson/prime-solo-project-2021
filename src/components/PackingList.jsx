@@ -87,8 +87,8 @@ function PackingList() {
             start_date: list.start_date,
             days: list.days,
             items: items,
-          }},
-          {type: 'RESET_ITEMS'}, 
+          }});
+        dispatch({type: 'RESET_ITEMS'}, 
           {type: 'RESET_CURRENT_LIST'});
         
         history.push('/user');
