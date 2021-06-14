@@ -6,7 +6,7 @@ const storeItem = (state = [], action) => {
         return [...state, action.payload];
     }
     else if (action.type === `DELETE_NEW_ITEM`){
-        return state.filter((i) => i != action.payload)
+        return state.filter((item, i) => i != action.payload)
     }
     else if (action.type === 'RESET_ITEMS') {
         return [];

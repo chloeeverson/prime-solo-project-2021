@@ -25,6 +25,7 @@ const useStyles = makeStyles({
     },
     input: {
         marginTop: 30,
+        marginBottom: 30,
        
     },
     addBtn: {
@@ -126,7 +127,8 @@ function PackingList() {
         //     name: name, 
         //     amount: amount,
         // }})
-        dispatch({type: 'RESET_ITEMS'});
+        dispatch({type: 'RESET_ITEMS'}, {type: 'RESET_CURRENT_LIST'});
+        
         history.push('/user');
 
     }
