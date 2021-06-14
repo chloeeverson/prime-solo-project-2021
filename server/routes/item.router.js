@@ -76,33 +76,5 @@ router.put('/complete/:id', (req, res) => {
     res.sendStatus(500);
   });
 });
-// router.delete('/:id', rejectUnauthenticated, (req, res) => {
-//   console.log(req.params.id);
-
-//   console.log('Delete request for id', req.params.id);
-//   let sqlText = `DELETE FROM item WHERE id = $1 AND user_id = ${req.user.id};`;
-//   pool.query(sqlText, [req.params.id])
-//     .then((result) => {
-//       res.sendStatus(200);
-//     })
-//     .catch((err) => {
-//       console.log(`Error making databse query ${sqlText}`, err);
-//       res.sendStatus(500)
-//     })
-
-// });
-
-// router.get('/', (req, res) => {
-  
-// let queryText = `SELECT * FROM "item";`;
-// pool.query(queryText).then(result => {
-//   // Sends back the results in an object
-//   res.send(result.rows);
-// })
-// .catch(error => {
-//   console.log('error getting lists', error);
-//   res.sendStatus(500);
-// });
-// });
 
 module.exports = router;

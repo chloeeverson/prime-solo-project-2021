@@ -31,16 +31,27 @@ const useStyles = makeStyles({
     marginTop: -4,
   
   },
+  homeLogo: {
+    marginTop: 5, 
+    marginLeft: 4,
+    
+
+  },
   logo: {
-    marginTop: 15,
+    marginTop: 5,
+    marginLeft: -16,
     // alignItems: "center",
     // justifyContent: "center"
+  },
+  loginNav: {
+    marginRight: 133,
+    marginTop: 5
   },
   titleHome: {
     alignItems: 'center'
   },
   suitcase: {
-    marginLeft: 19,
+    marginLeft: 17,
    
   },
   
@@ -85,16 +96,37 @@ function Nav() {
 
   return (
 
-    <div className="nav">
-      <Link className={classes.listLink} style={{color: '#F49D0C', marginLeft: 5}}
+      <div className="nav">
+      <Link style={{color: '#F49D0C', marginLeft: 5}}
         // className="navLink" 
         to={loginLinkData.path}>
         {loginLinkData.text}
       </Link>
 
-      {/* <Link to="/home"> */}
-      {/* <h2 className="nav-title">packMe</h2> */}
-      <ThemeProvider theme={theme}>
+
+{user.id && location.pathname === "/user" && (
+        <ThemeProvider theme={theme}>
+        <Grid className={classes.homeLogo}
+        >
+          <Grid item>
+            <CardTravelIcon className={classes.suitcase} 
+            style={{color: '#2c387e', align: 'center'}} 
+            
+            align="center" fontSize='large' />
+          </Grid>
+          <Grid item>
+
+            <Typography className={classes.title} variant="h6" style={{color: '#2c387e', align: 'center'}} align="center">packMe</Typography>
+            {/* <Grid item className={classes.titleHome}>
+          <Typography align="center" variant="h1">SAVED LISTS</Typography>
+          </Grid> */}
+          </Grid>
+        </Grid>
+      </ThemeProvider>)}
+      
+      
+  {user.id && location.pathname != "/user" && (
+    <ThemeProvider theme={theme}>
         <Grid className={classes.logo}
         >
           <Grid item>
@@ -111,9 +143,30 @@ function Nav() {
           </Grid> */}
           </Grid>
         </Grid>
+      </ThemeProvider>)}
+     
+     
+      {!user.id && (
+        <ThemeProvider theme={theme}>
+        <Grid align="center" className={classes.loginNav}
+        >
+          <Grid item>
+            <CardTravelIcon 
+            style={{color: '#2c387e', align: 'center'}} 
+            
+            align="center" fontSize='large' />
+          </Grid>
+          <Grid item>
+
+            <Typography  className={classes.title} variant="h6" style={{color: '#2c387e', align: 'center'}} align="center">packMe</Typography>
+            {/* <Grid item className={classes.titleHome}>
+          <Typography align="center" variant="h1">SAVED LISTS</Typography>
+          </Grid> */}
+          </Grid>
+        </Grid>
       </ThemeProvider>
-      {/* </Link> */}
-      <div>
+
+      )}
 
 
 
@@ -133,9 +186,8 @@ function Nav() {
         {/* <Link className="navLink" to="/about">
           About
         </Link> */}
-      </div>
-    </div>
-
+  
+  </div>
 
   );
 }
