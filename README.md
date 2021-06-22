@@ -41,10 +41,10 @@ Future builds: Feature to generate suggested packing items based on prompts usin
 
 ## Screenshots
 
-![SignIn](images/signIn.png)
-![SignUp](images/signUp.png)
-![Prompt](images/prompt.png)
-![NewList](images/newList.png)
-![Home](images/home.png)
-![SavedList](images/savedList.png)
+![SignIn](documentation/images/signIn.png)
+![SignUp](documentation/images/signUp.png)
+![Prompt](documentation/images/prompt.png)
+![NewList](documentation/images/newList.png)
+![Home](documentation/images/home.png)
+![SavedList](documentation/images/savedList.png)
 
