@@ -2,13 +2,16 @@
 
 ## About
 
-The goal of this app is to create an easier way to manage and organize packing for upcoming travel. 
+This app helps manage and organize packing for travel by allowing you to save, edit, and delete packing lists and their items. 
 
-A user will be able to create their own packing lists on the app and keep track of which items they packed using a checkbox system.
+A user can create and save multiple lists. 
 
-Users can make multiple lists, edit & reuse lists, and save their lists to return to at any time.
+A user can keep track of which items they have packed using a checkbox system.
 
-Technologies used: 
+Future builds: Feature to generate suggested packing items based on prompts using weather API
+
+## Technologies Used
+
 - JavaScript
 - React
 - Redux
@@ -20,8 +23,6 @@ Technologies used:
 - PostgreSQL
 - Node
 - Express
-
-Future builds: Feature to generate suggested packing items based on prompts using weather API
 
 
 ## Setup 
