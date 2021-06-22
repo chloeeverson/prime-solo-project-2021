@@ -1,3 +1,4 @@
+/* styling for all nav bar */
 .nav {
   /* flex box layout */
   display: flex;
@@ -15,7 +16,7 @@
 }
 
 
-
+/* styling for logout button  */
 .navLink {
   display: inline-block;
   color: #F49D0C;
