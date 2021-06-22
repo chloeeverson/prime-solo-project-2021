@@ -5,29 +5,22 @@ import {
   Redirect,
   Switch,
 } from 'react-router-dom';
-
 import { useDispatch } from 'react-redux';
-
 import Nav from '../Nav/Nav';
-
-
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-
-
 import UserPage from '../UserPage/UserPage';
-
-
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import Prompt from '../Prompt';
-import PackingList from '../PackingList'
+import NewList from '../NewList'
 import SavedList from '../SavedList'
-
 import './App.css';
 
 function App() {
+  //declare variable for use of dispatch function
   const dispatch = useDispatch();
 
+  //on load of page, call fetch user reducer
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
@@ -54,7 +47,7 @@ function App() {
             <UserPage />
           </ProtectedRoute>
 
-         
+
           <ProtectedRoute
             // logged in shows promptPage else shows LoginPage
             exact
@@ -67,7 +60,7 @@ function App() {
             exact
             path="/list"
           >
-            <PackingList />
+            <NewList />
           </ProtectedRoute>
           <ProtectedRoute
             // logged in shows SavedlistPage else shows LoginPage
@@ -102,7 +95,7 @@ function App() {
             <RegisterPage />
           </ProtectedRoute>
 
-     
+
 
           {/* If none of the other routes matched, we will show a 404. */}
           <Route>
