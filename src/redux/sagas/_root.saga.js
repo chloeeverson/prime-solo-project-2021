@@ -17,10 +17,10 @@ import savedListSaga from './savedList.saga';
 export default function* rootSaga() {
   yield all([
     loginSaga(), // login saga is now registered
-    registrationSaga(),
-    userSaga(),
-    itemSaga(),
-    listSaga(),
-    savedListSaga(),
+    registrationSaga(), //registered is now loggedin 
+    userSaga(),//triggers user interaction with server
+    itemSaga(),//contains all items sagas 
+    listSaga(),//contains all list sagas
+    savedListSaga(),//saga specific to current saved list clicked into 
   ]);
 }
