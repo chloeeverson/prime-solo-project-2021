@@ -43,7 +43,7 @@ const useStyles = makeStyles({
 
   },
   loginNav: {
-    marginRight: 133,
+    // marginRight: 133,
     marginTop: 5
   },
   titleHome: {
@@ -89,67 +89,79 @@ function Nav() {
 
 
   return (
+    <>
+      {/* display conditionally rendered link in upper left corner of nav bar */}
+      <div className="nav">
+        <Link style={{ color: '#F49D0C', marginLeft: 5 }}
 
-    //display conditionally rendered link in upper left corner of nav bar
-    <div className="nav">
-      <Link style={{ color: '#F49D0C', marginLeft: 5 }}
+          to={loginLinkData.path}>
+          {loginLinkData.text}
+        </Link>
 
-        to={loginLinkData.path}>
-        {loginLinkData.text}
-      </Link>
+        {/* pack me logo when logged in and on home page*/}
+        {user.id && location.pathname === "/user" && (
+          <ThemeProvider theme={theme}>
+            <Grid className={classes.homeLogo}
+            >
+              <Grid item>
+                <CardTravelIcon className={classes.suitcase}
+                  style={{ color: '#2c387e', align: 'center' }}
 
-      {/* pack me logo */}
-      {user.id && location.pathname === "/user" && (
-        <ThemeProvider theme={theme}>
-          <Grid className={classes.homeLogo}
-          >
-            <Grid item>
-              <CardTravelIcon className={classes.suitcase}
-                style={{ color: '#2c387e', align: 'center' }}
+                  align="center" fontSize='large' />
+              </Grid>
+              <Grid item>
 
-                align="center" fontSize='large' />
+                <Typography className={classes.title} variant="h6" style={{ color: '#2c387e', align: 'center' }} align="center">packMe</Typography>
+
+              </Grid>
             </Grid>
-            <Grid item>
+          </ThemeProvider>)}
 
-              <Typography className={classes.title} variant="h6" style={{ color: '#2c387e', align: 'center' }} align="center">packMe</Typography>
+        {/* pack me logo when logged in and not on home page */}
+        {user.id && location.pathname != "/user" && (
+          <ThemeProvider theme={theme}>
+            <Grid className={classes.logo}
+            >
+              <Grid item>
+                <CardTravelIcon className={classes.suitcase}
+                  style={{ color: '#2c387e', align: 'center' }}
 
+                  align="center" fontSize='large' />
+              </Grid>
+              <Grid item>
+
+                <Typography className={classes.title} variant="h6" style={{ color: '#2c387e', align: 'center' }} align="center">packMe</Typography>
+
+              </Grid>
             </Grid>
-          </Grid>
-        </ThemeProvider>)}
+          </ThemeProvider>)}
 
+        {/* logout button right corner nav bar when logged in*/}
+        {user.id && (
+          <>
 
-      {user.id && location.pathname != "/user" && (
-        <ThemeProvider theme={theme}>
-          <Grid className={classes.logo}
-          >
-            <Grid item>
-              <CardTravelIcon className={classes.suitcase}
-                style={{ color: '#2c387e', align: 'center' }}
+            <LogOutButton
+              className="navLink"
 
-                align="center" fontSize='large' />
-            </Grid>
-            <Grid item>
+            />
+          </>
+        )}
+      </div>
 
-              <Typography className={classes.title} variant="h6" style={{ color: '#2c387e', align: 'center' }} align="center">packMe</Typography>
-
-            </Grid>
-          </Grid>
-        </ThemeProvider>)}
-
-
+      {/* pack me logo when not logged in */}
       {!user.id && (
         <ThemeProvider theme={theme}>
           <Grid align="center" className={classes.loginNav}
           >
             <Grid item>
               <CardTravelIcon
-                style={{ color: '#2c387e', align: 'center' }}
+                style={{ color: '#2c387e', align: 'center', marginTop: 20 }}
 
                 align="center" fontSize='large' />
             </Grid>
             <Grid item>
 
-              <Typography className={classes.title} variant="h6" style={{ color: '#2c387e', align: 'center' }} align="center">packMe</Typography>
+              <Typography className={classes.title} variant="h6" style={{ color: '#2c387e', align: 'center', marginBottom: -30 }} align="center">packMe</Typography>
 
             </Grid>
           </Grid>
@@ -159,21 +171,12 @@ function Nav() {
 
 
 
-      {/* logout button right corner nav bar */}
-      {user.id && (
-        <>
-
-          <LogOutButton
-            className="navLink"
-
-          />
-        </>
-      )}
 
 
 
-    </div>
 
+
+    </>
   );
 }
 
